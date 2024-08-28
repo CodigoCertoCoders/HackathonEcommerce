@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "equipe-2"
+version = "0.1.0"
+description = ""
+authors = ["João Pedro Gonçalves <45002908+jpedro-fsgs@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.112.2"
+sqlalchemy = "^2.0.32"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

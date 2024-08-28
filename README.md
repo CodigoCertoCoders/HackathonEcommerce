@@ -20,7 +20,7 @@ Neste hackathon, você e sua equipe criarão um **e-commerce simples para pequen
   - Preenchimento dos dados de entrega e pagamento.
 
 * **Integração com WhatsApp:**
-  - Envio do pedido em formato de texto para o WhatsApp do cliente.
+  - Envio do pedido em formato de texto para o WhatsApp do cliente
 
 * **Banco de Dados:**
   - Armazenamento dos dados dos produtos, pedidos e clientes.

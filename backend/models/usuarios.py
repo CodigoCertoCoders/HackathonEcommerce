@@ -7,7 +7,9 @@ class CadastroUsuario(BaseModel):
     email: str
     senha: str
 
-class CadastroUsuarioResponse(BaseModel):
+class UsuarioResponse(BaseModel):
     id: int
     nome: str
+    telefone: str
+    endereco: str
     email: str

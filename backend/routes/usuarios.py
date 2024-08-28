@@ -1,13 +1,31 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
-from models.usuarios import CadastroUsuario, CadastroUsuarioResponse
+from models.usuarios import CadastroUsuario, UsuarioResponse
 from database.schema import Usuario, get_session, Session
 
 
 router = APIRouter()
 
-@router.post('/cadastrar')
-async def cadastrar_usuario(usuario_input: CadastroUsuario, session: Session = Depends(get_session)):
+
+@router.get("/")
+async def get_usuarios(session: Session = Depends(get_session)):
+    usuarios = session.query(Usuario).all()
+    return [
+        UsuarioResponse(
+            id=usuario.id,
+            nome=usuario.nome,
+            telefone=usuario.telefone,
+            endereco=usuario.endereco,
+            email=usuario.email,
+        )
+        for usuario in usuarios
+    ]
+
+
+@router.post("/cadastrar")
+async def cadastrar_usuario(
+    usuario_input: CadastroUsuario, session: Session = Depends(get_session)
+):
     try:
         usuario = Usuario(
             nome=usuario_input.nome,
@@ -19,10 +37,12 @@ async def cadastrar_usuario(usuario_input: CadastroUsuario, session: Session = D
         session.add(usuario)
         session.commit()
     except IntegrityError:
-        raise HTTPException(status_code=409, detail='Email já cadastrado')
+        raise HTTPException(status_code=409, detail="Email já cadastrado")
 
-    return CadastroUsuarioResponse(
+    return UsuarioResponse(
         id=usuario.id,
         nome=usuario.nome,
-        email=usuario.email
+        telefone=usuario.telefone,
+        endereco=usuario.endereco,
+        email=usuario.email,
     )

@@ -1,7 +1,7 @@
 # Documentação do Projeto
 
 ## Introdução
-**MalteX** é uma solução projetada para simplificar o processo de pedidos tanto para clientes quanto para a equipe da empresa MalteX. A aplicação oferece uma interface intuitiva e eficiente que permite aos clientes fazer pedidos de forma rápida e conveniente, enquanto também proporciona aos funcionários uma forma de lidar com os pedidos com facilidade.
+**MalteX** é uma solução projetada para simplificar o processo de pedidos tanto para clientes quanto para a equipe da Distribuidora de Bebidas MalteX. A aplicação oferece uma interface intuitiva e eficiente que permite aos clientes fazer pedidos de forma rápida e conveniente, enquanto também proporciona aos funcionários uma forma de lidar com os pedidos com facilidade.
 
 ## Convenções de Commit
 

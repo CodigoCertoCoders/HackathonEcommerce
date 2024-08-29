@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
+from app.security import get_hashed_senha
 from models.usuarios import CadastroUsuario, UsuarioResponse
 from database.schema import Usuario, get_session, Session
 
@@ -32,7 +33,7 @@ async def cadastrar_usuario(
             telefone=usuario_input.telefone,
             endereco=usuario_input.endereco,
             email=usuario_input.email,
-            hashed_senha=usuario_input.senha,
+            hashed_senha=get_hashed_senha(usuario_input.senha),
         )
         session.add(usuario)
         session.commit()

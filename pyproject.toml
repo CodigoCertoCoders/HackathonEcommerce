@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.12"
 fastapi = "^0.112.2"
 sqlalchemy = "^2.0.32"
+pyjwt = "^2.9.0"
+bcrypt = "^4.2.0"
 
 
 [build-system]

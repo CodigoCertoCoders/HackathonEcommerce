@@ -15,13 +15,12 @@ def get_session():
 
 Base = declarative_base()
 
-pedido_produto = Table(
-    'pedido_produto', Base.metadata,
-    Column('pedido_id', Integer, ForeignKey('pedido.id'), primary_key=True),
-    Column('produto_id', Integer, ForeignKey('produto.id'), primary_key=True),
-    Column('quantidade', Integer, nullable=False),
-    Column('preco_total', Float, nullable=False)
-)
+class PedidoProduto(Base):
+    __tablename__ = 'pedido_produto'
+    pedido_id = Column(Integer, ForeignKey('pedido.id'), primary_key=True)
+    produto_id = Column(Integer, ForeignKey('produto.id'), primary_key=True)
+    quantidade = Column(Integer, nullable=False)
+    preco_total = Column(Float, nullable=False)
 
 class Usuario(Base):
     __tablename__ = 'usuario'
@@ -55,7 +54,7 @@ class Produto(Base):
     id_categoria = Column(Integer, ForeignKey('categoria.id'), nullable=True)
     
     categoria = relationship('Categoria', back_populates='produtos')
-    pedidos = relationship('Pedido', secondary=pedido_produto, back_populates='produtos')
+    pedidos = relationship('Pedido', secondary='pedido_produto', back_populates='produtos')
 
 class Pedido(Base):
     __tablename__ = 'pedido'
@@ -66,6 +65,6 @@ class Pedido(Base):
     total = Column(Float, nullable=False)
     
     usuario = relationship('Usuario', back_populates='pedidos')
-    produtos = relationship('Produto', secondary=pedido_produto, back_populates='pedidos')
+    produtos = relationship('Produto', secondary='pedido_produto', back_populates='pedidos')
 
 Base.metadata.create_all(engine)

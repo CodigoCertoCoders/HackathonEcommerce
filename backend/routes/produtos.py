@@ -1,19 +1,19 @@
 from typing import Annotated
-
-from fastapi import APIRouter, Depends, HTTPException, Header
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.exc import IntegrityError
 from models.produtos import CadastrarProduto, ProdutoResponse
 from database.schema import Produto, get_session, Session, Categoria
-
-from app.security import verifica_token_acesso
-
 from routes.auth import get_current_usuario
 
 router = APIRouter()
 
+@router.get("/", response_model=list[ProdutoResponse])
+async def get_produtos(session: Session = Depends(get_session)) -> list[ProdutoResponse]:
+    """
+    Recupera todos os produtos cadastrados.
 
-@router.get("/")
-async def get_produtos(session: Session = Depends(get_session)):
+    - **Retorna** uma lista de produtos com suas informações (id, nome, descrição, preço, imagem, categoria).
+    """
     produtos = session.query(Produto).all()
     return [
         ProdutoResponse(
@@ -29,29 +29,34 @@ async def get_produtos(session: Session = Depends(get_session)):
     ]
 
 
-@router.post("/cadastrar")
+@router.post("/cadastrar", response_model=ProdutoResponse)
 async def cadastrar_produto(
         produto_input: CadastrarProduto,
         user: Annotated[dict, Depends(get_current_usuario)],
         session: Session = Depends(get_session)
-):
+) -> ProdutoResponse:
+    """
+    Cadastra um novo produto.
+
+    - **Parâmetros**:
+        - `produto_input`: Objeto contendo os dados do produto a ser cadastrado (nome, descrição, preço, url_imagem, id_categoria).
+        - `user`: O usuário que está fazendo a requisição. Deve ser um administrador.
+
+    - **Retorna** o produto cadastrado com suas informações (id, nome, descrição, preço, imagem, categoria).
+
+    - **Lança**:
+        - `HTTPException` 403 se o usuário não tiver permissão.
+        - `HTTPException` 400 se a categoria não existir.
+        - `HTTPException` 409 se o produto já estiver cadastrado.
+        - `HTTPException` 500 em caso de erro inesperado ao cadastrar.
+    """
+    if not user or not user.get("is_adm", False):
+        raise HTTPException(status_code=403, detail="Usuário sem permissão.")
+
     if not session.query(Categoria).filter(Categoria.id == produto_input.id_categoria).first():
         raise HTTPException(status_code=400, detail="Categoria não existe.")
 
-    if not user:
-        raise HTTPException(status_code=400, detail="Cabeçalho de autorização ausente.")
-
-     # Extrai o token do cabeçalho "Bearer <token>"
-
     try:
-        is_adm = user.get("is_adm", False)
-
-
-        if not is_adm:
-            raise HTTPException(status_code=403, detail="Usuário sem permissão.")
-
-        id_administrador = data.get("id")
-
         # Criar o produto
         produto = Produto(
             nome=produto_input.nome,
@@ -59,24 +64,85 @@ async def cadastrar_produto(
             preco=produto_input.preco,
             url_imagem=produto_input.url_imagem,
             id_categoria=produto_input.id_categoria,
-            id_administrador=id_administrador
         )
 
         session.add(produto)
         session.commit()
+        return ProdutoResponse(
+            id=produto.id,
+            nome=produto.nome,
+            descricao=produto.descricao,
+            preco=produto.preco,
+            url_imagem=produto.url_imagem,
+            id_categoria=produto.id_categoria,
+            categoria=produto.categoria.nome,
+        )
+
     except IntegrityError:
         session.rollback()
         raise HTTPException(status_code=409, detail="Produto já cadastrado.")
     except Exception as e:
         session.rollback()
-        raise HTTPException(status_code=500, detail="Erro ao cadastrar produto: " + str(e))
+        raise HTTPException(status_code=500, detail=f"Erro ao cadastrar produto: {str(e)}")
 
-    return ProdutoResponse(
-        id=produto.id,
-        nome=produto.nome,
-        descricao=produto.descricao,
-        preco=produto.preco,
-        url_imagem=produto.url_imagem,
-        id_categoria=produto.id_categoria,
-        categoria=produto.categoria.nome,
-    )
+
+@router.post("/editar", response_model=ProdutoResponse)
+async def editar_produto(
+        produto_input: CadastrarProduto,
+        user: Annotated[dict, Depends(get_current_usuario)],
+        session: Session = Depends(get_session)
+) -> ProdutoResponse:
+    """
+    Edita um produto existente.
+
+    - **Parâmetros**:
+        - `produto_input`: Objeto contendo os dados do produto a ser editado (id, nome, descrição, preço, url_imagem, id_categoria).
+        - `user`: O usuário que está fazendo a requisição. Deve ser um administrador.
+
+    - **Retorna** o produto atualizado com suas informações (nome, descrição, preço, imagem, categoria).
+
+    - **Lança**:
+        - `HTTPException` 403 se o usuário não tiver permissão.
+        - `HTTPException` 400 se a categoria não existir.
+        - `HTTPException` 404 se o produto não for encontrado.
+        - `HTTPException` 409 se o produto já estiver cadastrado.
+        - `HTTPException` 500 em caso de erro inesperado ao editar.
+    """
+    if not user or not user.get("is_adm", False):
+        raise HTTPException(status_code=403, detail="Usuário sem permissão.")
+
+    if not session.query(Categoria).filter(Categoria.id == produto_input.id_categoria).first():
+        raise HTTPException(status_code=400, detail="Categoria não existe.")
+
+    try:
+        # Busca o produto pelo ID
+        produto = session.query(Produto).get(produto_input.id)
+
+        if not produto:
+            raise HTTPException(status_code=404, detail="Produto não encontrado.")
+
+        # Atualiza os campos do produto
+        produto.nome = produto_input.nome
+        produto.descricao = produto_input.descricao
+        produto.preco = produto_input.preco
+        produto.url_imagem = produto_input.url_imagem
+        produto.id_categoria = produto_input.id_categoria
+
+        session.commit()
+
+        return ProdutoResponse(
+            id=produto.id,
+            nome=produto.nome,
+            descricao=produto.descricao,
+            preco=produto.preco,
+            url_imagem=produto.url_imagem,
+            id_categoria=produto.id_categoria,
+            categoria=produto.categoria.nome,
+        )
+
+    except IntegrityError:
+        session.rollback()
+        raise HTTPException(status_code=409, detail="Produto já cadastrado.")
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=500, detail=f"Erro ao editar produto: {str(e)}")

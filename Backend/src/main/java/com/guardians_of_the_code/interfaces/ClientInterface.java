@@ -13,5 +13,6 @@ public interface ClientInterface {
     public MessageStatusDTO updateClient(UUID uuid,ClientRequestDTO client);
     public MessageStatusDTO deleteClient(UUID uuid);
     public boolean existsClientByEmail(String email);
+    public boolean existsClientByPhone(String phone);
     public boolean existsClient(UUID uuid);
 }

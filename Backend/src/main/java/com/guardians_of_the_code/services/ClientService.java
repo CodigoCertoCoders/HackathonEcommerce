@@ -15,22 +15,18 @@ import java.util.UUID;
 public class ClientService implements ClientInterface {
     @Autowired
     private ClientRepository repository;
-
     @Override
     public ClientResponseDTO findByClient(UUID uuid) {
         return repository.findByClient(uuid);
     }
-
     @Override
     public Client createClient(ClientRequestDTO client) {
         return repository.createClient(client);
     }
-
     @Override
     public MessageStatusDTO updateClient(UUID uuid, ClientRequestDTO client) {
         return null;
     }
-
     @Override
     public MessageStatusDTO deleteClient(UUID uuid) {
         return null;
@@ -39,7 +35,9 @@ public class ClientService implements ClientInterface {
     public boolean existsClientByEmail(String email) {
         return repository.existsClientByEmail(email);
     }
-
+    public boolean existsClientByPhone(String phone) {
+        return repository.existsClientByPhone(phone);
+    }
     @Override
     public boolean existsClient(UUID uuid) {
         return repository.existsClient(uuid);

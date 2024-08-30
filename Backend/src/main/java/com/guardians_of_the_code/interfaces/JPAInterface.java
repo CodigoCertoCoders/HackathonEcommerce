@@ -10,9 +10,8 @@ import java.util.UUID;
 @Repository
 public interface JPAInterface extends JpaRepository<Client,UUID> {
     boolean existsClientByEmail(String email);
-
     Optional<Client> findClientById(UUID id);
-
     boolean existsClientById(UUID uuid);
+    boolean existsClientByPhone(String phone);
 }
 

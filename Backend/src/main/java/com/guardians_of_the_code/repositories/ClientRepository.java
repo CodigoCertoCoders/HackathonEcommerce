@@ -56,6 +56,11 @@ public class ClientRepository implements ClientInterface {
     }
 
     @Override
+    public boolean existsClientByPhone(String phone) {
+        return jpaRepository.existsClientByPhone(phone);
+    }
+
+    @Override
     public boolean existsClient(UUID uuid) {
         return jpaRepository.existsClientById(uuid);
     }

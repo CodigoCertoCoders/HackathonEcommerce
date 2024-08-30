@@ -15,6 +15,18 @@ from database.schema import (
 )
 from models import PedidoResponse, ProdutoPedidoResponse, RealizarPedido
 
+from app.pix import Payload
+
+# Definição chave de pix
+CHAVE_PIX = "jaimeodairbassojuniorjaime@gmail.com"
+# Verificação da validade da chave PIX
+# CHAVE_PIX = os.environ.get("CHAVE_PIX")
+
+if not CHAVE_PIX:
+    raise ValueError("A chave PIX não foi configurada. Verifique o arquivo.env.")
+
+# Verificação da validade da chave PIX
+
 # Criar pasta de logs se não existir
 if not os.path.exists("logs"):
     os.makedirs("logs")
@@ -36,35 +48,6 @@ router = APIRouter()
 
 def send_whatsapp_notification(phone_number: str, message: str, background_tasks: BackgroundTasks) -> None:
     background_tasks.add_task(pywhatkit.sendwhatmsg_instantly, phone_number, message, 7, True, 2)
-
-
-def gerar_crc(payload: str) -> str:
-    crc16 = crcmod.mkCrcFun(0x11021, initCrc=0xFFFF, rev=False, xorOut=0x0000)
-    crc16_code = crc16(payload.encode('utf-8'))
-    crc16_formatado = str(crc16_code).replace('0x', "").upper()
-    return crc16_formatado
-
-
-def gerar_payload_pix(chave: str, valor: float, nome_recebedor: str) -> str:
-    # Estrutura básica do payload PIX
-    payload = (
-        f"000201"  # Payload Format Indicator
-        f"26580014BR.GOV.BCB.PIX"  # Merchant Account Information
-        f"01{len(chave):02d}{chave}"  # Chave PIX
-        f"52040000"  # Merchant Category Code
-        f"5303986"  # Transaction Currency (986 = BRL)
-        f"5405{len(valor)}{valor:.2f}"  # Transaction Amount
-        f"5802BR"  # Country Code
-        f"5901{len(nome_recebedor):02d}{nome_recebedor}"  # Merchant Name
-        f"6008SAOPAULO"  # Merchant City
-        f"62070503***"  # Additional Data Field Template
-        f"6304"  # CRC16 placeholder
-    )
-
-    crc = gerar_crc(payload)  # Calcular o CRC-16
-    payload += crc  # Adicionar o CRC ao final do payload
-
-    return payload
 
 
 @router.get("/")
@@ -158,7 +141,7 @@ async def cadastrar_pedido(
                 for produto in pedido.produtos
             ],
             horario_pedido=pedido.horario_pedido,
-            total=pedido.total,
+            total=pedido.total
         )
     except Exception as e:
         logger.error(f"Erro cadastrando ordem: {e}")
@@ -178,6 +161,7 @@ async def gerar_pix(pedido_id: int, session: Session = Depends(get_session)):
     chave_pix = "jaimeodairbassojuniorjaime@gmail.com"  # Chave estática para simulação
     nome_recebedor = "Jaime Odair Basso Junior"
 
-    payload_pix = gerar_payload_pix(chave_pix, pedido.total, nome_recebedor)
+    payload_pix = Payload(chave_pix, pedido.total).gerarPayload()
+
 
     return {"payload": payload_pix}

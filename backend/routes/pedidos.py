@@ -28,18 +28,7 @@ if not CHAVE_PIX:
 # Verificação da validade da chave PIX
 
 # Criar pasta de logs se não existir
-if not os.path.exists("logs"):
-    os.makedirs("logs")
 
-# Configuração do logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("logs/app.log"),
-        logging.StreamHandler()  # Se quiser que os logs apareçam também no console
-    ]
-)
 
 logger = logging.getLogger(__name__)
 

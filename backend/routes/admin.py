@@ -39,7 +39,6 @@ async def cadastrar_administrador(
             endereco=administrador_input.endereco,
             email=administrador_input.email,
             hashed_senha=get_hashed_senha(administrador_input.senha),
-            chave_pix=administrador_input.chave_pix,
             adm=True
         )
         session.add(adm)

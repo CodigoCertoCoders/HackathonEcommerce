@@ -11,6 +11,9 @@ fastapi = "^0.112.2"
 sqlalchemy = "^2.0.32"
 bcrypt = "^4.2.0"
 pyjwt = "^2.9.0"
+python-multipart = "^0.0.9"
+pywhatkit = "^5.4"
+crcmod = "^1.7"
 
 
 [build-system]

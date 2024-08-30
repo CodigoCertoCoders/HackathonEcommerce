@@ -4,6 +4,7 @@ import com.guardians_of_the_code.dtos.ClientRequestDTO;
 import com.guardians_of_the_code.dtos.MessageStatusDTO;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.exceptions.HandleBadRequestException;
+import com.guardians_of_the_code.exceptions.HandleConflictException;
 import com.guardians_of_the_code.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,6 +45,17 @@ public class CreateClientUseCase {
 
         if(client.getPhone().length() != 11){
             throw new HandleBadRequestException("O cep deve seguir o formato 99221111111,contendo 11 caracteres");
+        }
+
+        boolean existsEmail = service.existsClientByEmail(client.getEmail());
+        boolean existsPhone = service.existsClientByPhone(client.getPhone());
+
+        if(existsEmail){
+            throw new HandleConflictException("Email já existe");
+        }
+
+        if(existsPhone){
+            throw new HandleConflictException("Número de celular já existe");
         }
 
         return service.createClient(client);

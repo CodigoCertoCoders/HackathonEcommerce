@@ -19,4 +19,10 @@ public class HandleGlobalExceptions {
         ClientErrorDTO errorResponse = new ClientErrorDTO("Erro na requisição",ex.getMessage(),422);
         return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
+
+    @ExceptionHandler(HandleConflictException.class)
+    public  ResponseEntity<ClientErrorDTO> handleConflict(HandleConflictException ex){
+        ClientErrorDTO errorResponse = new ClientErrorDTO("Conflito no banco de dados",ex.getMessage(),409);
+        return new ResponseEntity<>(errorResponse,HttpStatus.CONFLICT);
+    }
 }

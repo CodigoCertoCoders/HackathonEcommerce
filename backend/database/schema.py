@@ -30,7 +30,6 @@ class Usuario(Base):
     telefone = Column(String, nullable=False)
     endereco = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
-    chave_pix = Column(String, nullable=True, unique=True)
     hashed_senha = Column(String, nullable=False)
     adm = Column(Boolean, default=False)
     
@@ -52,11 +51,9 @@ class Produto(Base):
     descricao = Column(String, nullable=False)
     preco = Column(Float, nullable=False)
     url_imagem = Column(String, nullable=False)
-    id_administrador = Column(Integer, ForeignKey('usuario.id'), nullable=False)
     id_categoria = Column(Integer, ForeignKey('categoria.id'), nullable=True)
     
     categoria = relationship('Categoria', back_populates='produtos')
-    usuario = relationship('Usuario', foreign_keys=[id_administrador])
     pedidos = relationship('Pedido', secondary='pedido_produto', back_populates='produtos')
 
 class Pedido(Base):

@@ -1,10 +1,16 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.exc import IntegrityError
 from models.produtos import CadastrarProduto, ProdutoResponse
 from database.schema import Produto, get_session, Session, Categoria
+
 from app.security import verifica_token_acesso
 
+from routes.auth import get_current_usuario
+
 router = APIRouter()
+
 
 @router.get("/")
 async def get_produtos(session: Session = Depends(get_session)):
@@ -22,22 +28,25 @@ async def get_produtos(session: Session = Depends(get_session)):
         for produto in produtos
     ]
 
+
 @router.post("/cadastrar")
 async def cadastrar_produto(
-    produto_input: CadastrarProduto,
-    authorization: str = Header(None),
-    session: Session = Depends(get_session)
+        produto_input: CadastrarProduto,
+        user: Annotated[dict, Depends(get_current_usuario)],
+        session: Session = Depends(get_session)
 ):
-
     if not session.query(Categoria).filter(Categoria.id == produto_input.id_categoria).first():
         raise HTTPException(status_code=400, detail="Categoria não existe.")
 
-    token = authorization.split(" ")[1]
+    if not user:
+        raise HTTPException(status_code=400, detail="Cabeçalho de autorização ausente.")
+
+     # Extrai o token do cabeçalho "Bearer <token>"
 
     try:
-        # Decodificar o token e verificar permissões
-        data = verifica_token_acesso(token)
-        is_adm = data.get("is_adm", False)
+        is_adm = user.get("is_adm", False)
+
+
         if not is_adm:
             raise HTTPException(status_code=403, detail="Usuário sem permissão.")
 
@@ -52,6 +61,7 @@ async def cadastrar_produto(
             id_categoria=produto_input.id_categoria,
             id_administrador=id_administrador
         )
+
         session.add(produto)
         session.commit()
     except IntegrityError:

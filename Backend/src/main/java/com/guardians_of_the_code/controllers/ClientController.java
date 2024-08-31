@@ -5,6 +5,7 @@ import com.guardians_of_the_code.dtos.ClientResponseDTO;
 import com.guardians_of_the_code.dtos.MessageStatusDTO;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.use_cases.CreateClientUseCase;
+import com.guardians_of_the_code.use_cases.DeleteClientUseCase;
 import com.guardians_of_the_code.use_cases.FindClientByUUIDUseCase;
 import com.guardians_of_the_code.use_cases.UpdateClientUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class ClientController {
     @Autowired
     private UpdateClientUseCase updateClientUseCase;
 
+    @Autowired
+    private DeleteClientUseCase deleteClientUseCase;
+
     @GetMapping("/{uuid}")
     public ResponseEntity<ClientResponseDTO> getClientById(@PathVariable UUID uuid){
         ClientResponseDTO clientResponseDTO = findClientByUUIDUseCase.execute(uuid);
@@ -48,5 +52,12 @@ public class ClientController {
     public ResponseEntity<MessageStatusDTO> upadteClient(@PathVariable UUID uuid,@RequestBody ClientRequestDTO client){
         MessageStatusDTO response = updateClientUseCase.execute(uuid,client);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<Void> deleteClient(@PathVariable UUID uuid){
+        deleteClientUseCase.execute(uuid);
+
+        return ResponseEntity.noContent().build();
     }
 }

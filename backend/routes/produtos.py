@@ -21,7 +21,8 @@ async def get_produtos(session: Session = Depends(get_session)) -> list[ProdutoR
             nome=produto.nome,
             descricao=produto.descricao,
             preco=produto.preco,
-            url_imagem=produto.url_imagem,
+            url_imagens=produto.url_imagens,
+            adicionais=produto.adicionais,
             id_categoria=produto.id_categoria,
             categoria=produto.categoria.nome,
         )
@@ -50,7 +51,8 @@ async def cadastrar_produto(
         - `HTTPException` 409 se o produto já estiver cadastrado.
         - `HTTPException` 500 em caso de erro inesperado ao cadastrar.
     """
-    if not user or not user.get("is_adm", False):
+    if not user or not user.get("is_adm"):
+        print(not user.get("is_adm"))
         raise HTTPException(status_code=403, detail="Usuário sem permissão.")
 
     if not session.query(Categoria).filter(Categoria.id == produto_input.id_categoria).first():
@@ -62,7 +64,8 @@ async def cadastrar_produto(
             nome=produto_input.nome,
             descricao=produto_input.descricao,
             preco=produto_input.preco,
-            url_imagem=produto_input.url_imagem,
+            url_imagens=produto_input.url_imagens,
+            adicionais=produto_input.adicionais,
             id_categoria=produto_input.id_categoria,
         )
 
@@ -73,7 +76,8 @@ async def cadastrar_produto(
             nome=produto.nome,
             descricao=produto.descricao,
             preco=produto.preco,
-            url_imagem=produto.url_imagem,
+            url_imagens=produto.url_imagens,
+            adicionais=produto.adicionais,
             id_categoria=produto.id_categoria,
             categoria=produto.categoria.nome,
         )

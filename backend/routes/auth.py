@@ -56,7 +56,7 @@ async def get_current_usuario(token: Annotated[str, Depends(oauth2_scheme)]):
         if not username or not user_id:
             raise HTTPException(status_code=401, detail="Não foi possível validar o usuário")
 
-        return {'username': username, 'id': user_id, is_adm: is_adm }
+        return {'username': username, 'id': user_id, 'is_adm': is_adm }
 
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expirado")

@@ -1,10 +1,11 @@
 from datetime import datetime
-from typing import List
+from typing import Dict, List
 from pydantic import BaseModel
 
 class ProdutoPedido(BaseModel):
     id_produto: int
     quantidade: int
+    adicionais: Dict[str, str]
 
 class RealizarPedido(BaseModel):
     id_usuario: int

@@ -2,3 +2,6 @@
 __pycache__
 
 poetry.lock
+backend/PyWhatKit_DB.txt
+backend/logs/app.log
+database.db

@@ -25,6 +25,7 @@ CHAVE_PIX = "jaimeodairbassojuniorjaime@gmail.com"
 if not CHAVE_PIX:
     raise ValueError("A chave PIX não foi configurada. Verifique o arquivo.env.")
 
+
 # Verificação da validade da chave PIX
 
 # Criar pasta de logs se não existir
@@ -33,6 +34,7 @@ if not CHAVE_PIX:
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
+
 
 
 def send_whatsapp_notification(phone_number: str, message: str, background_tasks: BackgroundTasks) -> None:

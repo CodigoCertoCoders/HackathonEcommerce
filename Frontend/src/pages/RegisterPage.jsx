@@ -1,5 +1,5 @@
 import useViewportHeight from '../hooks/useViewportHeight';
-import styles from './RegisterPage.module.css';
+import styles from './css/RegisterPage.module.css';
 import fonts from '../fonts/fonts.module.css';
 
 import GreenButton from '../components/GreenButton';

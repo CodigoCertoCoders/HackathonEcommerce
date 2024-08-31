@@ -4,9 +4,9 @@ import com.guardians_of_the_code.dtos.ClientRequestDTO;
 import com.guardians_of_the_code.dtos.ClientResponseDTO;
 import com.guardians_of_the_code.dtos.MessageStatusDTO;
 import com.guardians_of_the_code.entities.Client;
-import com.guardians_of_the_code.interfaces.JPAInterface;
 import com.guardians_of_the_code.use_cases.CreateClientUseCase;
 import com.guardians_of_the_code.use_cases.FindClientByUUIDUseCase;
+import com.guardians_of_the_code.use_cases.UpdateClientUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,7 @@ public class ClientController {
     private CreateClientUseCase createClientUseCase;
 
     @Autowired
-    private JPAInterface repository;
+    private UpdateClientUseCase updateClientUseCase;
 
     @GetMapping("/{uuid}")
     public ResponseEntity<ClientResponseDTO> getClientById(@PathVariable UUID uuid){
@@ -42,5 +42,11 @@ public class ClientController {
         MessageStatusDTO response = new MessageStatusDTO("Cliente criado com sucesso",201);
 
         return ResponseEntity.created(path).body(response);
+    }
+
+    @PutMapping("/{uuid}")
+    public ResponseEntity<MessageStatusDTO> upadteClient(@PathVariable UUID uuid,@RequestBody ClientRequestDTO client){
+        MessageStatusDTO response = updateClientUseCase.execute(uuid,client);
+        return ResponseEntity.ok(response);
     }
 }

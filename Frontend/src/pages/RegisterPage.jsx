@@ -1,20 +1,28 @@
 import useViewportHeight from '../hooks/useViewportHeight';
-import styles from './RegisterPage.module.css';
+import styles from './css/RegisterPage.module.css';
 import fonts from '../fonts/fonts.module.css';
 
 import GreenButton from '../components/GreenButton';
 import WhiteButton from '../components/WhiteButton';
 
-import GoogleIcon from '../assets/google-icon.png';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
+import { GoogleLogin } from '@react-oauth/google';
+
+const clientId = 'process.env.REACT_APP_GOOGLE_CLIENT_ID';
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();
 
   const handleGuestLoginClick = () => {};
 
-  const handleLoginWithGoogle = () => {};
+  const onSuccess = (response) => {
+    console.log(response);
+  };
+
+  const onFailure = () => {
+    console.log('Login failed');
+  };
 
   const handleLoginWithFacebook = () => {};
 
@@ -29,11 +37,10 @@ const RegisterPage = () => {
         </div>
         <p className={fonts.latoMedium}> Acessar com</p>
         <div className={styles.logos}>
-          <Logo
-            onClick={handleLoginWithGoogle}
-            logo={GoogleIcon}
-            width={'40px'}
-            height={'40px'}
+          <GoogleLogin
+            clientId={clientId}
+            onSuccess={onSuccess}
+            onError={onFailure}
           />
           <Logo
             onClick={handleLoginWithFacebook}

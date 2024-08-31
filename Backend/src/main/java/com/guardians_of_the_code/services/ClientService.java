@@ -25,7 +25,7 @@ public class ClientService implements ClientInterface {
     }
     @Override
     public MessageStatusDTO updateClient(UUID uuid, ClientRequestDTO client) {
-        return null;
+        return repository.updateClient(uuid,client);
     }
     @Override
     public MessageStatusDTO deleteClient(UUID uuid) {
@@ -41,5 +41,10 @@ public class ClientService implements ClientInterface {
     @Override
     public boolean existsClient(UUID uuid) {
         return repository.existsClient(uuid);
+    }
+
+    @Override
+    public boolean existsClientByEmailAndId(UUID uuid, String email) {
+        return repository.existsClientByEmailAndId(uuid,email);
     }
 }

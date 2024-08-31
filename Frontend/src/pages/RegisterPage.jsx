@@ -1,17 +1,15 @@
 import useViewportHeight from '../hooks/useViewportHeight';
-import styles from './RegisterPage.module.css';
+import styles from './css/RegisterPage.module.css';
 import fonts from '../fonts/fonts.module.css';
 
 import GreenButton from '../components/GreenButton';
 import WhiteButton from '../components/WhiteButton';
 
-import GoogleIcon from '../assets/google-icon.png';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 import { GoogleLogin } from '@react-oauth/google';
 
-const clientId =
-  '932081329445-ipn89airdnpivl04sp01090cvtems6fv.apps.googleusercontent.com';
+const clientId = 'process.env.REACT_APP_GOOGLE_CLIENT_ID';
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();

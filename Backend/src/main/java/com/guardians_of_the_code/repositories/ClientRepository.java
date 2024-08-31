@@ -10,6 +10,7 @@ import com.guardians_of_the_code.interfaces.JPAInterface;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -21,6 +22,9 @@ public class ClientRepository implements ClientInterface {
 
     @Autowired
     private JPAInterface jpaRepository;
+
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Override
     public ClientResponseDTO findByClient(UUID uuid) {
@@ -34,6 +38,8 @@ public class ClientRepository implements ClientInterface {
     @Override
     public Client createClient(ClientRequestDTO client) {
         Client clientModel = modelMapper.map(client,Client.class);
+
+        clientModel.setPassword(encoder.encode(client.getPassword()));
 
         jpaRepository.save(clientModel);
 
@@ -68,14 +74,18 @@ public class ClientRepository implements ClientInterface {
             existingClient.setPhone(client.getPhone());
         }
 
+        if(client.getPassword() != null && !client.getPassword().isEmpty()){
+            existingClient.setPassword(encoder.encode(client.getPassword()));
+        }
+
         jpaRepository.save(existingClient);
 
         return new MessageStatusDTO("Atualizado com sucesso", 200);
     }
 
     @Override
-    public MessageStatusDTO deleteClient(UUID uuid) {
-        return null;
+    public void deleteClient(UUID uuid) {
+        jpaRepository.deleteById(uuid);
     }
 
     @Override

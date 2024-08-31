@@ -4,12 +4,12 @@ import lombok.*;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class ClientRequestDTO {
     private String name;
-
     private String email;
-
     private String cep;
-
     private String phone;
+    private String password;
 }

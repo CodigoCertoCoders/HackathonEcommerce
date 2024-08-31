@@ -15,4 +15,5 @@ public interface ClientInterface {
     public boolean existsClientByEmail(String email);
     public boolean existsClientByPhone(String phone);
     public boolean existsClient(UUID uuid);
+    public boolean existsClientByEmailAndId(UUID uuid,String email);
 }

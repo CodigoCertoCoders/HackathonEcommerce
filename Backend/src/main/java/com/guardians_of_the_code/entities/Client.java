@@ -28,5 +28,7 @@ public class Client extends RepresentationModel<Client> {
     private String email;
     @Column(columnDefinition = "CHAR(11)",unique = true)
     private String phone;
+    @Column(columnDefinition = "VARCHAR(100)")
+    private String password;
 
 }

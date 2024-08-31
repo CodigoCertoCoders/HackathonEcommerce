@@ -1,0 +1,18 @@
+
+.allProdCatalog{
+    color: black;
+    font-size: 20px;
+}   
+
+.imgProd{
+    background-color: black;
+    height: 15vh;
+    width: 40vw;
+    margin: 10px;
+}
+
+.legendaProd{
+    width: 100%;
+    margin: 12px;
+    
+}

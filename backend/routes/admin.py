@@ -5,8 +5,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from models import CadastroUsuario, UsuarioResponse, UsuarioResponseToken
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from models.usuarios import CadastroAdministrador
-
 router = APIRouter()
 
 
@@ -27,7 +25,7 @@ async def get_administradores(session: Session = Depends(get_session)):
 
 @router.post("/cadastrar")
 async def cadastrar_administrador(
-        administrador_input: CadastroAdministrador, session: Session = Depends(get_session)
+        administrador_input: CadastroUsuario, session: Session = Depends(get_session)
 ):
     if session.query(Usuario).filter(Usuario.email == administrador_input.email).first():
         raise HTTPException(status_code=409, detail="Email já cadastrado")

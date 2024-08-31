@@ -8,13 +8,6 @@ class CadastroUsuario(BaseModel):
     email: str
     senha: str
 
-class CadastroAdministrador(BaseModel):
-    nome: str
-    telefone: str
-    endereco: Dict[str, str]
-    email: str
-    senha: str
-    chave_pix: str
 
 class UsuarioResponse(BaseModel):
     id: int

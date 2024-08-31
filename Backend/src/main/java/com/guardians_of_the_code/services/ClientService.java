@@ -28,8 +28,8 @@ public class ClientService implements ClientInterface {
         return repository.updateClient(uuid,client);
     }
     @Override
-    public MessageStatusDTO deleteClient(UUID uuid) {
-        return null;
+    public void deleteClient(UUID uuid) {
+        repository.deleteClient(uuid);
     }
     @Override
     public boolean existsClientByEmail(String email) {

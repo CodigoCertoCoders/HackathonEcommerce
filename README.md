@@ -1,6 +1,6 @@
 ![E-commerce para Bairros](https://i.imgur.com/jEt247C.jpeg)
 
-# 📚 Hackathon E-commerce para Bairros
+# 📚 Hackathon E-commerce para
 
 **Você está pronto para fazer a diferença? Bem-vindo ao Hackathon Código Certo Coders!** Esta é a sua chance de mostrar suas habilidades, aprender novas tecnologias e colaborar com outros talentos em uma competição empolgante.
 

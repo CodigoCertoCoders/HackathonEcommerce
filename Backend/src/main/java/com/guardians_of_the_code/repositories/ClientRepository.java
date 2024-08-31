@@ -42,7 +42,35 @@ public class ClientRepository implements ClientInterface {
 
     @Override
     public MessageStatusDTO updateClient(UUID uuid,ClientRequestDTO client) {
-        return null;
+        Optional<Client> clientModel = jpaRepository.findClientById(uuid);
+        if(clientModel.isEmpty()){
+            throw new HandleNotFoundException("Cliente");
+        }
+
+        Client existingClient = clientModel.get();
+
+        if (client.getName() != null && !client.getName().isEmpty()) {
+            existingClient.setName(client.getName());
+        }
+
+        if (client.getCep() != null && !client.getCep().isEmpty()) {
+            existingClient.setCep(client.getCep());
+        }
+
+        if (client.getEmail() != null && !client.getEmail().isEmpty()) {
+            if (jpaRepository.existsByEmailAndIdNot(client.getEmail(), uuid)) {
+                throw new RuntimeException("Email já existe");
+            }
+            existingClient.setEmail(client.getEmail());
+        }
+
+        if (client.getPhone() != null && !client.getPhone().isEmpty()) {
+            existingClient.setPhone(client.getPhone());
+        }
+
+        jpaRepository.save(existingClient);
+
+        return new MessageStatusDTO("Atualizado com sucesso", 200);
     }
 
     @Override
@@ -64,4 +92,10 @@ public class ClientRepository implements ClientInterface {
     public boolean existsClient(UUID uuid) {
         return jpaRepository.existsClientById(uuid);
     }
+
+    @Override
+    public boolean existsClientByEmailAndId(UUID uuid,String email) {
+        return jpaRepository.existsByIdAndEmail(uuid,email);
+    }
+
 }

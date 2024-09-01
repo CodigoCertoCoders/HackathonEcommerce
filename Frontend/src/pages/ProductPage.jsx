@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductCard from "../components/ProductComponents";
-import productsData from '../static/produtos.json';
 import FilterComponents from "../components/FilterComponents";
 import { ProductContext } from "../context/ProductContext";
 import ShoppingCart from '../assets/shopping_cart.svg';
@@ -8,11 +7,36 @@ import Person from '../assets/person.svg';
 import Search from '../assets/search.svg';
 import Adjustment from '../assets/adjustment.svg';
 import styles from './css/ProductPage.module.css';
+import productData from '../static/produtos.json'
 
 const ProductPage = () => {
-  const { products } = useContext(ProductContext);
+  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setAtivateMaisPedidos} = useContext(ProductContext);
+  const [search , setSearch] = useState('')
+  const [searchFiltred, setSearchFiltred] = useState(products);
 
- console.log("ProductPage" , products)
+    
+  const handleSearch = (event) =>{
+    setSearch(event.target.value)
+  }
+  
+  const handleSubmit = (event) => {
+    if(search == ''){
+      setProducts(productData)
+      console.log(products)
+    }else{
+      const filtered = products.filter(product =>
+        product.nome.toLowerCase().includes(search.toLowerCase()) ||
+        product.category.toLowerCase().includes(search.toLowerCase())
+      );
+      setProducts(filtered)
+      
+    }
+    setSearch('')
+    setAtivateMaisPedidos(false)
+    event.preventDefault(); // Impede o recarregamento da página
+    
+  };
+
 
   return (
     <div>
@@ -38,16 +62,21 @@ const ProductPage = () => {
             }}
             alt="Ícone de busca"
           />
-          <input
-            type="text"
-            placeholder="Esta procurando por..."
-            style={{
-              width: '100%',
-              padding: '10px 10px 10px 30px',
-              border: '1px solid #ccc',
-            }}
-            className={styles.input}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Esta procurando por..."
+              value={search}
+              onChange={handleSearch}
+              style={{
+                width: '100%',
+                padding: '10px 10px 10px 30px',
+                border: '1px solid #ccc',
+              }}
+              className={styles.input}
+            />
+          </form>
+          
           <i
             style={{
               position: 'absolute',
@@ -60,17 +89,20 @@ const ProductPage = () => {
             className="fas fa-times"
           ></i>
         </div>
-        <img className={styles.imgAdjustment} src={Adjustment} alt="Ícone de ajuste" />
+        <img onClick={()=>{setActivateFilter(true) , setAtivateMaisPedidos(false)}}className={styles.imgAdjustment} src={Adjustment} alt="Ícone de ajuste" />
       </section>
+      <div className={`${''} ${activateMaisPedidos === true ? '' : styles.notFilterPage}`}>
 
-      <h3>Mais pedidos</h3>
-      <section className={styles.sectionMaisPedidos}>
-        <div className={styles.catalogProd}>
-          {products.map((prod) => (
-            <img key={prod.nome} src={prod.foto} className={styles.imgProd} alt={prod.nome} />
-          ))}
-        </div>
-      </section>
+          <h3>Mais pedidos</h3>
+          <section className={styles.sectionMaisPedidos}>
+            <div className={styles.catalogProd}>
+              {products.map((prod) => (
+                <img key={prod.nome} src={prod.foto} className={styles.imgProd} alt={prod.nome} />
+              ))}
+            </div>
+          </section>
+      </div>
+      
 
       <h3>Todas as bebidas</h3>
         
@@ -85,7 +117,7 @@ const ProductPage = () => {
         ))}
 
       </section>
-      <div className={styles.filterPage}>
+      <div className={`${styles.filterPage} ${activateFilter === true ? styles.filterPage : styles.notFilterPage}`}>
           <FilterComponents />
         </div>
     </div>

@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import styles from '../components/css/FilterComponents.module.css'
+import close from '../assets/close.svg'
 import { ProductContext } from '../context/ProductContext'
 import productData from '../static/produtos.json'
 
 const FilterComponents = () =>{
 
-    const {products,handleFilter} = useContext(ProductContext)
+    const {products,setActivateFilter ,handleFilter, activateMaisPedidos , setAtivateMaisPedidos} = useContext(ProductContext)
     const [filter , setFilter] = useState('')
     const [categories , setCategories] = useState([])
     const css  = filter
@@ -19,8 +20,16 @@ const FilterComponents = () =>{
 
     
     return(
+        
         <div className={styles.container}>
-            <h2>Filtrar por</h2>
+            <div className={styles.headerFilter}>
+                <h2>Filtrar por</h2>
+                <div>
+
+                    <img className={styles.xFilter} src={close} onClick={() => {setActivateFilter(false) , setFilter('')}}></img>
+                </div>
+            </div>
+
             <div className={styles.list}>
                 {categories.map((category)=>(
                     <p key={`${category}`} 
@@ -32,9 +41,9 @@ const FilterComponents = () =>{
             </div>
             
             <div className={styles.containerButton}>
-                <button onClick={() =>handleFilter(filter)} className={styles.button}>Buscar</button>
-                <button onClick={() =>{ handleFilter("")
-                    setFilter('')
+                <button onClick={()=>{handleFilter(filter), setActivateFilter(false)}} className={styles.button}>Buscar</button>
+                <button onClick={() =>{handleFilter("")
+                    setFilter('') , setAtivateMaisPedidos(true)
                 }} className={styles.button}>Limpar Filtro</button>
             </div>
             

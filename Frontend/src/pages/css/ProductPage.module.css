@@ -72,10 +72,10 @@
 }
 
 .allProducts{
-    height: 20vh;
+    height: 5vh;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 2fr)); /* Ajusta o número de colunas */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 2fr)); /* Ajusta o número de colunas */
     grid-auto-rows: 200px; /* Define a altura das linhas */
 
 
@@ -106,7 +106,11 @@
 
 
 .filterPage{
-    margin-top: 10vh;
+    margin-top: 20vh;
    z-index: 100;
    position: relative;
+}
+
+.notFilterPage{
+    display: none;
 }

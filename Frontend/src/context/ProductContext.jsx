@@ -6,6 +6,8 @@ export const ProductContext = createContext()
 export const ProductProvider = ({children})=>{
     const [products , setProducts] = useState([])
     const [productsFilter , setProductsFilter] = useState([])
+    const [activateFilter , setActivateFilter] = useState(false)
+    const [activateMaisPedidos , setAtivateMaisPedidos] = useState(true)
 
     useEffect(() => {
         setProducts(productData); // Carrega os produtos do arquivo JSON
@@ -27,7 +29,7 @@ export const ProductProvider = ({children})=>{
 
 
     return(
-        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter}}>
+        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter , activateFilter , setActivateFilter, activateMaisPedidos , setAtivateMaisPedidos}}>
             {children}
         </ProductContext.Provider>
     )

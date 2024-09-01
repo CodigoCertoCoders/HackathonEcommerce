@@ -1,12 +1,12 @@
 import styles from './css/ProductCard.module.css'
-const ProductCard = () =>{
+const ProductCard = ({name, price , photo}) =>{
 
     return(
         <div className={styles.allProdCatalog}>
-        <figure className={styles.imgProd}></figure>
+        <img src={photo} className={styles.imgProd}/>
              <div className={styles.legendaProd}>
-                 <p>Nome do produto</p>
-                 <p><strong>Preço</strong></p>
+                 <p>{name}</p>
+                 <p><strong>R${price}</strong></p>
              </div>
      </div>
     )

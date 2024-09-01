@@ -72,15 +72,19 @@
 }
 
 .allProducts{
-    height: 100vh;
+    height: 5vh;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 2fr)); /* Ajusta o número de colunas */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 2fr)); /* Ajusta o número de colunas */
     grid-auto-rows: 200px; /* Define a altura das linhas */
-    overflow-x: auto; /* Adiciona o scroll horizontal */
-    overflow-y: hidden; /* Impede o scroll vertical */
-    white-space: nowrap; /* Impede a quebra de linha dos  itens internos */
 
+
+}
+
+.imgProd{
+    height: 15vh;
+    width: 40vw;
+    margin: 10px;
 }
 
 .allProdCatalog{
@@ -98,4 +102,15 @@
 .legendaProd{
     width: 100%;
     margin: 12px;
+}
+
+
+.filterPage{
+    margin-top: 20vh;
+   z-index: 100;
+   position: relative;
+}
+
+.notFilterPage{
+    display: none;
 }

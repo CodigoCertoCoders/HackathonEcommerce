@@ -42,4 +42,4 @@ SUBSTRING(HEX(id), 21, 12)
 ) AS id,name,phone,email,cep FROM tb_client;``
 
 
-//restringir rota quando somente estiver logado,caso não tenha logado,
+-------------------------------------------------

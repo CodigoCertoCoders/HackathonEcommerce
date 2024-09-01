@@ -59,8 +59,28 @@ public class ClientRepository implements ClientInterface {
             existingClient.setName(client.getName());
         }
 
-        if (client.getCep() != null && !client.getCep().isEmpty()) {
-            existingClient.setCep(client.getCep());
+        if (client.getUf() != null && !client.getUf().isEmpty()) {
+            existingClient.setUf(client.getUf());
+        }
+
+        if (client.getCity() != null && !client.getCity().isEmpty()) {
+            existingClient.setCity(client.getCity());
+        }
+
+        if (client.getNeighborhood() != null && !client.getNeighborhood().isEmpty()) {
+            existingClient.setNeighborhood(client.getNeighborhood());
+        }
+
+        if (client.getRoad() != null && !client.getRoad().isEmpty()) {
+            existingClient.setRoad(client.getRoad());
+        }
+
+        if (client.getNumber_house() != null && !client.getNumber_house().isEmpty()) {
+            existingClient.setNumber_house(client.getNumber_house());
+        }
+
+        if (client.getComplement() != null && !client.getComplement().isEmpty()) {
+            existingClient.setComplement(client.getComplement());
         }
 
         if (client.getEmail() != null && !client.getEmail().isEmpty()) {
@@ -86,6 +106,18 @@ public class ClientRepository implements ClientInterface {
     @Override
     public void deleteClient(UUID uuid) {
         jpaRepository.deleteById(uuid);
+    }
+
+    @Override
+    public boolean updateTokenClient(String email, String token) {
+        Optional<Client> optionalClient = jpaRepository.findByEmail(email);
+        if (optionalClient.isEmpty()) {
+            throw new HandleNotFoundException("Cliente");
+        }
+        Client client = optionalClient.get();
+        client.setToken(token);
+        jpaRepository.save(client);
+        return true;
     }
 
     @Override

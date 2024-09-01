@@ -1,5 +1,5 @@
-const Logo = ({ logo, width, heigth }) => {
-  return <img style={{ width: width, height: heigth}} src={logo}></img>;
+const Logo = ({ logo, width, height }) => {
+  return <img style={{ width: width, height: height }} src={logo}></img>;
 };
 
 export default Logo;

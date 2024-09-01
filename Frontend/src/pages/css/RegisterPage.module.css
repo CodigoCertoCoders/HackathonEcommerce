@@ -8,6 +8,10 @@
     justify-content: end;
 }
 
+.container button {
+    cursor: pointer;
+}
+
 .background {
     top: 0;
     left: 0;
@@ -50,6 +54,7 @@
 }
 
 .logos {
+    display: flex;
     margin-top: 10px;
     margin-bottom: 20px;
 }

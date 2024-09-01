@@ -5,26 +5,21 @@ import fonts from '../fonts/fonts.module.css';
 import GreenButton from '../components/GreenButton';
 import WhiteButton from '../components/WhiteButton';
 
+import GoogleIcon from '../assets/google-icon.png';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
-import { GoogleLogin } from '@react-oauth/google';
-
-const clientId = 'process.env.REACT_APP_GOOGLE_CLIENT_ID';
+import { useGoogleLogin, googleLogout } from '@react-oauth/google';
+import { LoginSocialFacebook } from 'reactjs-social-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();
 
   const handleGuestLoginClick = () => {};
 
-  const onSuccess = (response) => {
-    console.log(response);
-  };
-
-  const onFailure = () => {
-    console.log('Login failed');
-  };
-
-  const handleLoginWithFacebook = () => {};
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) => console.log(tokenResponse),
+  });
 
   return (
     <section className={styles.container} style={{ height: viewportHeight }}>
@@ -37,17 +32,23 @@ const RegisterPage = () => {
         </div>
         <p className={fonts.latoMedium}> Acessar com</p>
         <div className={styles.logos}>
-          <GoogleLogin
-            clientId={clientId}
-            onSuccess={onSuccess}
-            onError={onFailure}
-          />
-          <Logo
-            onClick={handleLoginWithFacebook}
-            logo={FacebookIcon}
-            width={'40px'}
-            height={'40px'}
-          />
+          <button
+            style={{ background: 'none', border: 'none' }}
+            onClick={() => login()}
+          >
+            <Logo logo={GoogleIcon} width={'40px'} height={'40px'} />
+          </button>
+          <LoginSocialFacebook
+            appId="874984757295899"
+            onResolve={(response) => {
+              console.log(response);
+            }}
+            onReject={(error) => {
+              console.log(error);
+            }}
+          >
+            <Logo logo={FacebookIcon} width={'40px'} height={'40px'} />
+          </LoginSocialFacebook>
         </div>
         <p
           onClick={handleGuestLoginClick}

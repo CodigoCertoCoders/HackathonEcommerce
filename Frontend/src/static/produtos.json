@@ -1,0 +1,47 @@
+[
+    {
+      "id" : "1",
+      "nome": "Whisky",
+      "preco": 79.90,
+      "foto": "https://images.tcdn.com.br/img/img_prod/774261/whisky_buchanans_12_anos_1000ml_885_2_fded5267aa59b01d8f7e2a7722bbe557.jpg",
+      "category":"whisky"
+    },
+    {
+      "id" : "2",
+      "nome": "Cerveja",
+      "preco": 129.90,
+      "foto": "https://images.tcdn.com.br/img/img_prod/1017982/cerveja_artesanal_leopoldina_pilsner_extra_puro_malte_993_1_8e89e3f3147e7c36049ca4d578517be3.jpg",
+      "category":"cerveja"
+    },
+    {
+      "id" : "3",
+      "nome": "Gin",
+      "preco": 249.90,
+      "foto": "https://images.tcdn.com.br/img/img_prod/774261/gin_beefeater_750ml_1298_1_1adf414166b974c753545f813229c7e9.jpg",
+      "category":"gin"
+    },
+
+    {
+        "id" : "4",
+        "nome": "Whisky",
+        "preco": 79.90,
+        "foto": "https://images.tcdn.com.br/img/img_prod/774261/whisky_buchanans_12_anos_1000ml_885_2_fded5267aa59b01d8f7e2a7722bbe557.jpg",
+        "category":"whisky"
+    },
+    {
+        "id" : "5",
+        "nome": "Cerveja",
+        "preco": 129.90,
+        "foto": "https://images.tcdn.com.br/img/img_prod/1017982/cerveja_artesanal_leopoldina_pilsner_extra_puro_malte_993_1_8e89e3f3147e7c36049ca4d578517be3.jpg",
+        "category":"cerveja"
+    },
+    {
+        "id" : "6",
+        "nome": "Gin",
+        "preco": 249.90,
+        "foto":"https://images.tcdn.com.br/img/img_prod/774261/gin_beefeater_750ml_1298_1_1adf414166b974c753545f813229c7e9.jpg",
+        "category":"gin"
+    }
+    
+]
+  

@@ -1,0 +1,86 @@
+.container{
+    background-color: gray;
+    color: white;
+    height: 40vh;
+    border-radius: 10px;
+}
+
+.list{
+    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 2fr)); /* Ajusta o número de colunas */
+    
+}
+
+.listDetail{
+   width: 40px;
+   border-radius: 10px;
+   border: 1px solid black;
+   padding: 20px;
+   background-color: rebeccapurple;
+   font-size: 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: white;
+   cursor: pointer;
+}
+
+.listDetail2{
+    width: 40px;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 20px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #294122;
+}
+
+.containerFilter{
+    width: 20vw;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.containerButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 23vw;
+}
+.button{
+    background-color: #294122;
+    width: 70vw;
+    padding: 15px;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #d9d9d9;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #ee0505; /* Cor de fundo quando selecionado */
+    font-weight: bold; /* Opcional: destaca o texto selecionado */
+}
+
+.headerFilter{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.xFilter{
+    margin-right: 20px;
+    cursor: pointer;
+}

@@ -1,15 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
 import ProductPage from './pages/ProductPage';
-import { ProductProvider } from './context/ProductContext';
+import { ProductContext, ProductProvider } from './context/ProductContext';
+import ProductDetails from './pages/ProductDetails';
+import { useContext } from 'react';
 
 function App() {
+
+
+
   return (
     <ProductProvider>
       <Router>
         <Routes>
           <Route path="/" element={<RegisterPage />} />
           <Route path="/catalog" element={<ProductPage />} />
+          <Route path='/catalog/:id' element={<ProductDetails/> }></Route>
         </Routes>
       </Router>
     </ProductProvider>

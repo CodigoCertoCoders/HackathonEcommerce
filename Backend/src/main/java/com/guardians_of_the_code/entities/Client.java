@@ -22,13 +22,22 @@ public class Client extends RepresentationModel<Client> {
     private UUID id;
     @Column(length = 30)
     private String name;
-    @Column(columnDefinition = "CHAR(8)")
-    private String cep;
-    @Column(length = 120,unique = true)
+    @Column(length = 120,unique = true,nullable = false)
     private String email;
-    @Column(columnDefinition = "CHAR(11)",unique = true)
+    @Column(columnDefinition = "CHAR(11)",unique = true,nullable = false)
     private String phone;
-    @Column(columnDefinition = "VARCHAR(100)")
+    @Column(nullable = false,columnDefinition = "CHAR(2)")
+    private String uf;
+    @Column(nullable = false)
+    private String city;
+    @Column(nullable = false)
+    private String neighborhood;
+    @Column(nullable = false)
+    private String road;
+    private String number_house;
+    private String complement;
+    @Column(columnDefinition = "VARCHAR(100)",nullable = false)
     private String password;
+    private String token;
 
 }

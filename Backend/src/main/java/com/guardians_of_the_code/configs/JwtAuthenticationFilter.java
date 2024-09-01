@@ -24,7 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
 
-        if ("/login".equals(requestURI) || ("/clients".equals(requestURI) && request.getMethod().equals("POST"))) {
+        if ("/login/verifyCredentials".equals(requestURI) || ("/clients".equals(requestURI) && request.getMethod().equals("POST"))) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -38,10 +38,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         try {
-            JWTVerifier verifier = JWT.require(Algorithm.RSA256(googleJwtKeyProvider))
-                    .build();
+            DecodedJWT decodedJWT = JWT.decode(token);
+            String algorithm = decodedJWT.getHeaderClaim("alg").asString();
 
-            DecodedJWT jwt = verifier.verify(token);
+            JWTVerifier verifier;
+
+            if ("RS256".equals(algorithm)) {
+                verifier = JWT.require(Algorithm.RSA256(googleJwtKeyProvider))
+                        .build();
+            } else if ("HS256".equals(algorithm)) {
+                verifier = JWT.require(Algorithm.HMAC256("GuardioesDoCodigoMaltex"))
+                        .build();
+            } else {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                response.getWriter().write("\"Algoritmo não suportado\"");
+                return;
+            }
+            verifier.verify(token);
         } catch (Exception e) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("\"Token inválido\"");

@@ -6,7 +6,7 @@ import productData from '../static/produtos.json'
 
 const FilterComponents = () =>{
 
-    const {products,setActivateFilter ,handleFilter, activateMaisPedidos , setAtivateMaisPedidos} = useContext(ProductContext)
+    const {products,setActivateFilter ,handleFilter , setActivateMaisPedidos} = useContext(ProductContext)
     const [filter , setFilter] = useState('')
     const [categories , setCategories] = useState([])
     const css  = filter
@@ -43,7 +43,7 @@ const FilterComponents = () =>{
             <div className={styles.containerButton}>
                 <button onClick={()=>{handleFilter(filter), setActivateFilter(false)}} className={styles.button}>Buscar</button>
                 <button onClick={() =>{handleFilter("")
-                    setFilter('') , setAtivateMaisPedidos(true)
+                    setFilter('') , setActivateMaisPedidos(true), setActivateFilter(false)
                 }} className={styles.button}>Limpar Filtro</button>
             </div>
             

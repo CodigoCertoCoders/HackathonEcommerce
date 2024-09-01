@@ -10,10 +10,8 @@ import styles from './css/ProductPage.module.css';
 import productData from '../static/produtos.json'
 
 const ProductPage = () => {
-  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setAtivateMaisPedidos} = useContext(ProductContext);
+  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setActivateMaisPedidos} = useContext(ProductContext);
   const [search , setSearch] = useState('')
-  const [searchFiltred, setSearchFiltred] = useState(products);
-
     
   const handleSearch = (event) =>{
     setSearch(event.target.value)
@@ -22,17 +20,18 @@ const ProductPage = () => {
   const handleSubmit = (event) => {
     if(search == ''){
       setProducts(productData)
-      console.log(products)
     }else{
       const filtered = products.filter(product =>
         product.nome.toLowerCase().includes(search.toLowerCase()) ||
         product.category.toLowerCase().includes(search.toLowerCase())
       );
       setProducts(filtered)
+     
       
     }
-    setSearch('')
-    setAtivateMaisPedidos(false)
+
+    setSearch('') // Limpa o campo de pesquisa
+    setActivateMaisPedidos(false) // Volta a mostrar os produtos mais vendidos
     event.preventDefault(); // Impede o recarregamento da página
     
   };
@@ -89,7 +88,7 @@ const ProductPage = () => {
             className="fas fa-times"
           ></i>
         </div>
-        <img onClick={()=>{setActivateFilter(true) , setAtivateMaisPedidos(false)}}className={styles.imgAdjustment} src={Adjustment} alt="Ícone de ajuste" />
+        <img onClick={()=>{setActivateFilter(true) , setActivateMaisPedidos(false)}}className={styles.imgAdjustment} src={Adjustment} alt="Ícone de ajuste" />
       </section>
       <div className={`${''} ${activateMaisPedidos === true ? '' : styles.notFilterPage}`}>
 
@@ -113,6 +112,7 @@ const ProductPage = () => {
             name={prod.nome}
             price={prod.preco}
             photo={prod.foto}
+            id={prod.id}
           />
         ))}
 

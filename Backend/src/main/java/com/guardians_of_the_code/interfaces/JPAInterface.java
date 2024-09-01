@@ -6,14 +6,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface JPAInterface extends JpaRepository<Client,UUID> {
+    // clients
     boolean existsClientByEmail(String email);
 
     Optional<Client> findClientById(UUID id);
+
+    Optional<Client> findByEmail(String email);
 
     boolean existsClientById(UUID uuid);
 
@@ -22,4 +26,7 @@ public interface JPAInterface extends JpaRepository<Client,UUID> {
     boolean existsByIdAndEmail(UUID uuid, String email);
 
     boolean existsByEmailAndIdNot(String email,UUID uuid);
+
+    //login
+    Optional<Client> findClientByEmail(String email);
 }

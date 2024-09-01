@@ -31,6 +31,12 @@ public class ClientService implements ClientInterface {
     public void deleteClient(UUID uuid) {
         repository.deleteClient(uuid);
     }
+
+    @Override
+    public boolean updateTokenClient(String email, String token) {
+        return repository.updateTokenClient(email,token);
+    }
+
     @Override
     public boolean existsClientByEmail(String email) {
         return repository.existsClientByEmail(email);

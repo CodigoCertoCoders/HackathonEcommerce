@@ -16,12 +16,6 @@ public interface JPAInterfaceProduct extends JpaRepository<Product, UUID> {
 
     Optional<Product> findById(UUID uuid);
 
-    @Query("SELECT p FROM Product p WHERE p.name LIKE %:search%")
-    List<Product> findProductsByName(@Param("search") String search);
-
-    @Query("SELECT p FROM Product p WHERE p.category IN :categories")
-    List<Product> findProductsByCategories(@Param("categories") List<String> categories);
-
     void deleteById(UUID uuid);
 
     boolean existsById(UUID uuid);

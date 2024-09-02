@@ -15,9 +15,15 @@ Activating the virtual environment will change your shell’s prompt to show wha
 ### Instale as dependências
 `pip install -r requirements.txt`
 
+### Configure as variáveis de ambiente
+Crie um arquivo '.env' no diretório raiz (este aqui) e cole o seguinte:
+```
+SECRET_KEY=a$a@!@o(e4gs8^^y#8cxr8tq@tk170%u7usi$yt)1b#w@2de%5
+ALLOWED_HOSTS=*
+DEBUG=True
+```
+
 ### Comece a trabalhar
-Mude para o diretório raiz do projeto Django:
-`cd api`
 Para rodar o servidor de desenvolvimento:
 `python manage.py runserver`
 

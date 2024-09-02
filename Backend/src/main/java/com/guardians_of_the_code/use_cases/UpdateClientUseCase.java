@@ -20,8 +20,20 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("Nome não pode ser vazio ou nulo");
         }
 
-        if(request.getCep().isEmpty() || request.getCep().isBlank()){
-            throw new HandleBadRequestException("Cep não pode ser vazio ou nulo");
+        if(request.getUf().isEmpty() || request.getUf().isBlank()){
+            throw new HandleBadRequestException("Uf não pode ser vazia ou nula");
+        }
+
+        if(request.getCity().isEmpty() || request.getCity().isBlank()){
+            throw new HandleBadRequestException("Cidade não pode ser vazia ou nula");
+        }
+
+        if(request.getNeighborhood().isEmpty() || request.getNeighborhood().isBlank()){
+            throw new HandleBadRequestException("Bairro não pode ser vazia ou nula");
+        }
+
+        if(request.getRoad().isEmpty() || request.getRoad().isBlank()){
+            throw new HandleBadRequestException("Rua não pode ser vazia ou nula");
         }
 
         if(request.getEmail().isEmpty() || request.getEmail().isBlank()){
@@ -32,16 +44,20 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("Telefone não pode ser vazio ou nulo");
         }
 
-        if(request.getCep().length() != 8){
-            throw new HandleBadRequestException("O cep deve seguir o formato 00000000,contendo 8 caracteres");
+        if(request.getPassword() == null || request.getPassword().isEmpty()){
+            throw new HandleBadRequestException("Senha não pode ser vazia ou nula");
         }
 
-        if(request.getName().length() > 30 || request.getName().length() < 4){
-            throw new HandleBadRequestException("O nome deve ter no minimo 4 e no máximo 30 caracteres");
+        if(request.getUf().length() != 2){
+            throw new HandleBadRequestException("UF deve  conter 2 caracteres");
         }
 
-        if(request.getEmail().length() > 120){
-            throw new HandleBadRequestException("O email deve ter até 120 caracteres");
+        if(request.getName().length() > 30){
+            throw new HandleBadRequestException("O nome deve ter até 30 caracteres");
+        }
+
+        if(request.getEmail().length() > 120 || request.getEmail().length() < 15){
+            throw new HandleBadRequestException("O email deve ter no minimo 15 e no máximo 120 caracteres");
         }
 
         if(request.getPhone().length() != 11){

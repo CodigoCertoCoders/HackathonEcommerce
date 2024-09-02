@@ -75,7 +75,7 @@ async def cadastrar_produto(
             descricao=produto_input.descricao,
             preco=produto_input.preco,
             url_imagens=produto_input.url_imagens,
-            adicionais=produto_input.adicionais,
+            adicionais=[adicional.model_dump() for adicional in produto_input.adicionais],
             id_categoria=produto_input.id_categoria,
         )
 

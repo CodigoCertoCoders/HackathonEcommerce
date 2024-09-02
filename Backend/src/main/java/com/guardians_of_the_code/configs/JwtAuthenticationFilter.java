@@ -23,8 +23,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        System.out.println(requestURI);
 
-        if ("/login/verifyCredentials".equals(requestURI) || ("/clients".equals(requestURI) && request.getMethod().equals("POST"))) {
+        if (
+                ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                "/login/verifyCredentials".equals(requestURI) ||
+                "/products".equals(requestURI) ||
+                requestURI.matches("/products/[^/]+") ||
+                "/products/findBySearch".equals(requestURI) ||
+                        "/products/findByCategory".equals(requestURI)
+        ) {
             filterChain.doFilter(request, response);
             return;
         }

@@ -4,4 +4,4 @@ __pycache__
 poetry.lock
 PyWhatKit_DB.txt
 backend/logs/app.log
-database.db
+database/database.db

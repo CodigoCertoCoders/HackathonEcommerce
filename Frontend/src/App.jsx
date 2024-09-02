@@ -6,16 +6,17 @@ import ProductDetails from './pages/ProductDetails';
 import { useContext } from 'react';
 
 function App() {
-
-
-
   return (
     <ProductProvider>
       <Router>
         <Routes>
           <Route path="/" element={<RegisterPage />} />
+          {
+            //<Route path="/signup" element={<SignUpPage />} />
+            //<Route path="/signin" element={<SignInPage />} />
+          }
           <Route path="/catalog" element={<ProductPage />} />
-          <Route path='/catalog/:id' element={<ProductDetails/> }></Route>
+          <Route path="/catalog/:id" element={<ProductDetails />}></Route>
         </Routes>
       </Router>
     </ProductProvider>

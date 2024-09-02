@@ -1,0 +1,7 @@
+.venv/
+__pycache__
+
+poetry.lock
+PyWhatKit_DB.txt
+backend/logs/app.log
+database/database.db

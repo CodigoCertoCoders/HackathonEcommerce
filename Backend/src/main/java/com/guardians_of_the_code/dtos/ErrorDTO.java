@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ClientErrorDTO {
+public class ErrorDTO {
     String message;
     String details;
     int status;

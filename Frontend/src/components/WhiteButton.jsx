@@ -1,6 +1,7 @@
-const WhiteButton = ({ text }) => {
+const WhiteButton = ({ text, onClick }) => {
   return (
     <button
+      onClick={onClick}
       style={{
         background: '#FFFFFF',
         color: '#294122',

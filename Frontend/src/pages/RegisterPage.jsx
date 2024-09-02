@@ -8,8 +8,11 @@ import WhiteButton from '../components/WhiteButton';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 import { GoogleLogin } from '@react-oauth/google';
+import { LoginSocialFacebook } from 'reactjs-social-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
 
-const clientId = 'process.env.REACT_APP_GOOGLE_CLIENT_ID';
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const facebookClientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();
@@ -24,7 +27,27 @@ const RegisterPage = () => {
     console.log('Login failed');
   };
 
+  const handleClickAlredyHaveAccount = () => {
+    console.log('tem conta');
+  };
+
+  const handleClickCreateNewAccount = () => {
+    console.log('nao tem conta');
+  };
+
   const handleLoginWithFacebook = () => {};
+
+  const getUserProfile = async (accessToken) => {
+    try {
+      const response = await fetch(
+        `https://graph.facebook.com/me?fields=email,name&access_token=${accessToken}`,
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data from Facebook API:', error);
+    }
+  };
 
   return (
     <section className={styles.container} style={{ height: viewportHeight }}>
@@ -32,22 +55,35 @@ const RegisterPage = () => {
       <div className={`${styles.form} ${fonts.montserratMedium}`}>
         <h1 className={styles.computerText}>Welcome!</h1>
         <div className={styles.buttons}>
-          <GreenButton text={'Já tenho uma conta'} />
-          <WhiteButton text={'Criar nova conta'} />
+          <GreenButton
+            onClick={handleClickAlredyHaveAccount}
+            text={'Já tenho uma conta'}
+          />
+          <WhiteButton
+            onClick={handleClickCreateNewAccount}
+            text={'Criar nova conta'}
+          />
         </div>
         <p className={fonts.latoMedium}> Acessar com</p>
         <div className={styles.logos}>
           <GoogleLogin
-            clientId={clientId}
+            clientId={googleClientId}
             onSuccess={onSuccess}
             onError={onFailure}
           />
-          <Logo
-            onClick={handleLoginWithFacebook}
-            logo={FacebookIcon}
-            width={'40px'}
-            height={'40px'}
-          />
+          <LoginSocialFacebook
+            appId={facebookClientId}
+            scope="public_profile,email"
+            onResolve={(response) => {
+              console.log(response);
+              getUserProfile(response.data.accessToken);
+            }}
+            onReject={(error) => {
+              console.log(error);
+            }}
+          >
+            <Logo logo={FacebookIcon} width={'40px'} height={'40px'} />
+          </LoginSocialFacebook>
         </div>
         <p
           onClick={handleGuestLoginClick}

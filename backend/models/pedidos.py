@@ -1,20 +1,25 @@
 from datetime import datetime
-from typing import Dict, List
+from typing import List, Optional
 from pydantic import BaseModel
+
+class Adicional(BaseModel):
+    nome: str
+    preco: float
 
 class ProdutoPedido(BaseModel):
     id_produto: int
     quantidade: int
-    adicionais: Dict[str, str]
+    adicionais: List[Adicional]
 
 class RealizarPedido(BaseModel):
     id_usuario: int
-    produtos: List[ProdutoPedido]
+    produtos: Optional[List[ProdutoPedido]]
 
 class ProdutoPedidoResponse(BaseModel):
     id_produto: int
     nome_produto: str
     quantidade: int
+    adicionais: Optional[List[Adicional]]
 
 class PedidoResponse(BaseModel):
     id: int

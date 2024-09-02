@@ -5,7 +5,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.exceptions.HandleNotFoundException;
-import com.guardians_of_the_code.interfaces.JPAInterface;
+import com.guardians_of_the_code.interfaces.JPAInterfaceClient;
 import com.guardians_of_the_code.interfaces.LoginInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Repository
 public class LoginRepository implements LoginInterface {
     @Autowired
-    private JPAInterface jpaRepository;
+    private JPAInterfaceClient jpaRepository;
 
     @Autowired
     private PasswordEncoder encoder;

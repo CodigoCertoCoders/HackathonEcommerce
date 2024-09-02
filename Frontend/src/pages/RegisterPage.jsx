@@ -9,7 +9,6 @@ import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 import { GoogleLogin } from '@react-oauth/google';
 import { LoginSocialFacebook } from 'reactjs-social-login';
-import { FacebookLoginButton } from 'react-social-login-buttons';
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const facebookClientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;

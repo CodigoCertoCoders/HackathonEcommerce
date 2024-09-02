@@ -7,6 +7,16 @@ from routes.auth import get_current_usuario
 
 router = APIRouter()
 
+from fastapi import Depends, HTTPException, status
+
+
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+
 @router.get("/", response_model=list[ProdutoResponse])
 async def get_produtos(session: Session = Depends(get_session)) -> list[ProdutoResponse]:
     """
@@ -33,7 +43,7 @@ async def get_produtos(session: Session = Depends(get_session)) -> list[ProdutoR
 @router.post("/cadastrar", response_model=ProdutoResponse)
 async def cadastrar_produto(
         produto_input: CadastrarProduto,
-        user: Annotated[dict, Depends(get_current_usuario)],
+        user: dict = Depends(is_adm),
         session: Session = Depends(get_session)
 ) -> ProdutoResponse:
     """
@@ -82,15 +92,17 @@ async def cadastrar_produto(
             categoria=produto.categoria.nome,
         )
 
+
     except IntegrityError:
         session.rollback()
         raise HTTPException(status_code=409, detail="Produto já cadastrado.")
     except Exception as e:
         session.rollback()
-        raise HTTPException(status_code=500, detail=f"Erro ao cadastrar produto: {str(e)}")
+        logger.error(f"Erro ao cadastrar produto: {str(e)}")
+        raise HTTPException(status_code=500, detail="Erro ao cadastrar produto.")
 
 
-@router.post("/editar", response_model=ProdutoResponse)
+@router.put("/editar", response_model=ProdutoResponse)
 async def editar_produto(
         produto_input: CadastrarProduto,
         user: Annotated[dict, Depends(get_current_usuario)],
@@ -112,7 +124,7 @@ async def editar_produto(
         - `HTTPException` 409 se o produto já estiver cadastrado.
         - `HTTPException` 500 em caso de erro inesperado ao editar.
     """
-    if not user or not user.get("is_adm", False):
+    if not user or not user.get("is_adm"):
         raise HTTPException(status_code=403, detail="Usuário sem permissão.")
 
     if not session.query(Categoria).filter(Categoria.id == produto_input.id_categoria).first():

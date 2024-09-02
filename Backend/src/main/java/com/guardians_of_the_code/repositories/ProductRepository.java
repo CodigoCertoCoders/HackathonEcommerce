@@ -74,7 +74,7 @@ public class ProductRepository implements ProductInterface {
     }
 
     @Override
-    public MessageStatusDTO createProduct(String name, String description, String category, Double price, MultipartFile image) {
+    public Product createProduct(String name, String description, String category, Double price, MultipartFile image) {
         Category categoryEnum = null;
 
         Product product = new Product();
@@ -115,7 +115,7 @@ public class ProductRepository implements ProductInterface {
         }
 
         jpaInterfaceProduct.save(product);
-        return new MessageStatusDTO("Produto criado com sucesso", 201);
+        return product;
     }
 
     @Override

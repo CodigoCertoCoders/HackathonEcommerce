@@ -13,4 +13,5 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetAllProductsResponseDTO {
     private List<ProductResponseDTO> products;
+    private String path;
 }

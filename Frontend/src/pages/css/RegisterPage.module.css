@@ -39,7 +39,7 @@
     gap: 15px;
     margin-bottom: 25px;
 }
-
+""
 .buttons button {
     height: 50px;
     border-radius: 10px;
@@ -50,6 +50,7 @@
 }
 
 .logos {
+    display: flex;
     margin-top: 10px;
     margin-bottom: 20px;
 }

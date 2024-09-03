@@ -34,7 +34,7 @@ public class ProductRepository implements ProductInterface {
     private final Path fileStorageLocation;
 
     public ProductRepository() {
-        this.fileStorageLocation = Paths.get("src/main/java/com/guardians_of_the_code/assets").toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get("src/main/resources/assets").toAbsolutePath().normalize();
 
         try{
             Files.createDirectories(this.fileStorageLocation);
@@ -44,12 +44,12 @@ public class ProductRepository implements ProductInterface {
     }
 
     @Override
-    public GetAllProductsResponseDTO getAllProducts() {
+    public List<ProductResponseDTO> getAllProducts() {
         List<Product> products = jpaInterfaceProduct.findAll();
         if(products.isEmpty()){
             throw new HandleProductsNotFoundException("Produtos não encontrados");
         }
-        List<ProductResponseDTO> productResponseDTOS = products.stream()
+        return products.stream()
                 .map(product -> {
                     ProductResponseDTO dto = new ProductResponseDTO();
                     dto.setUuid(product.getId());
@@ -61,7 +61,6 @@ public class ProductRepository implements ProductInterface {
                     return dto;
                 })
                 .toList();
-        return new GetAllProductsResponseDTO(productResponseDTOS);
     }
 
     @Override
@@ -127,8 +126,8 @@ public class ProductRepository implements ProductInterface {
 
         Product existingProduct = productModel.get();
         if(name != null && !name.isEmpty()){
-            String oldPath = "src/main/java/com/guardians_of_the_code/assets/"+existingProduct.getName();
-            String newPath = "src/main/java/com/guardians_of_the_code/assets/"+name;
+            String oldPath = "src/main/resources/assets/"+existingProduct.getName();
+            String newPath = "src/main/resources/assets/"+name;
             File currentDirectory = new File(oldPath);
             File newDirectory = new File(newPath);
 
@@ -162,8 +161,8 @@ public class ProductRepository implements ProductInterface {
             String filename = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
 
             try {
-                String oldPath = "src/main/java/com/guardians_of_the_code/assets/"+existingProduct.getName();
-                String newPath = "src/main/java/com/guardians_of_the_code/assets/"+name;
+                String oldPath = "src/main/resources/assets/"+existingProduct.getName();
+                String newPath = "src/main/resources/assets/"+name;
                 File currentDirectory = new File(oldPath);
                 File newDirectory = new File(newPath);
 

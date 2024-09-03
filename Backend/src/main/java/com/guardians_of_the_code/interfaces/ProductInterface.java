@@ -6,10 +6,11 @@ import com.guardians_of_the_code.dtos.ProductResponseDTO;
 import com.guardians_of_the_code.entities.Product;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ProductInterface {
-    GetAllProductsResponseDTO getAllProducts();
+    List<ProductResponseDTO> getAllProducts();
     ProductResponseDTO getProductById(UUID uuid);
     Product createProduct(String name, String description, String category, Double price, MultipartFile image);
     MessageStatusDTO updateProduct(UUID uuid,String name, String description, String category, Double price, MultipartFile image);

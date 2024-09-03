@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ================================
+   Definições de Variáveis CSS
+================================ */
+
+@layer base {
+  :root {
+    --background: #FFFFFF /* Cor de fundo */
+    --foreground: 0 0% 3.9%; /* Cor do texto */
+    --card: 0 0% 100%; /* Cor do cartão */
+    --card-foreground: 0 0% 3.9%; /* Cor do texto do cartão */
+    --popover: 0 0% 100%; /* Cor do popover */
+    --popover-foreground: 0 0% 3.9%; /* Cor do texto do popover */
+    --primary: 0 0% 9%; /* Cor primária */
+    --primary-foreground: 0 0% 98%; /* Cor do texto primário */
+    --secondary: 0 0% 96.1%; /* Cor secundária */
+    --secondary-foreground: 0 0% 9%; /* Cor do texto secundário */
+    --muted: 0 0% 96.1%; /* Cor atenuada */
+    --muted-foreground: 0 0% 45.1%; /* Cor do texto atenuado */
+    --accent: 0 0% 96.1%; /* Cor de destaque */
+    --accent-foreground: 0 0% 9%; /* Cor do texto de destaque */
+    --destructive: 0 84.2% 60.2%; /* Cor destrutiva */
+    --destructive-foreground: 0 0% 98%; /* Cor do texto destrutivo */
+    --border: 0 0% 89.8%; /* Cor da borda */
+    --input: 0 0% 89.8%; /* Cor do input */
+    --ring: 0 0% 3.9%; /* Cor do anel */
+    --radius: 0.5rem; /* Raio de borda */
+    /* Cores de gráfico */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  /* ================================
+     Estilos Globais
+  ================================= */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Adicionado box-sizing para melhor controle */
+  }
+
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))] font-body; /* Estilos do corpo */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading; /* Estilo para títulos */
+  }
+
+  /* Estilos de Sombra e Transição */
+  .text-shadow {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .transition {
+    transition: all 0.3s ease; /* Transição suave */
+  }
+}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import useViewportHeight from '../hooks/useViewportHeight';
 import styles from './css/RegisterPage.module.css';
 import fonts from '../fonts/fonts.module.css';
@@ -10,33 +12,35 @@ import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const facebookClientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();
+  const navigate = useNavigate();
+  const { login } = React.useContext(AuthContext);
 
-  const handleGuestLoginClick = () => {};
+  const handleGuestLoginClick = () => {
+    navigate('/catalog');
+  };
 
   const handleGoogleSuccess = (response) => {
-    console.log('Google login successful:', response);
+    // logic for google login
   };
 
   const handleGoogleFailure = (error) => {
-    console.error('Google Login failed:', error);
+    // logic for google failure
   };
 
   const handleFacebookSuccess = (response) => {
-    console.log('Facebook login successful:', response);
-    getUserProfile(response.data.accessToken);
+    // logic for facebook login
   };
 
   const handleFacebookFailure = (error) => {
-    console.error('Facebook Login failed:', error);
+    // logic for facebook failure
   };
-
-  const navigate = useNavigate();
 
   const handleClickAlredyHaveAccount = () => {
     navigate('/signin');

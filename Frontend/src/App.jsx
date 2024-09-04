@@ -6,20 +6,37 @@ import ProductDetails from './pages/ProductDetails';
 import { useContext } from 'react';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './context/AuthProvider';
+import PublicRoute from './components/PublicRoute';
 
 function App() {
   return (
-    <ProductProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<RegisterPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/catalog" element={<ProductPage />} />
-          <Route path="/catalog/:id" element={<ProductDetails />}></Route>
-        </Routes>
-      </Router>
-    </ProductProvider>
+    <AuthProvider>
+      <ProductProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<PublicRoute element={<RegisterPage />} />}
+            />
+            <Route
+              path="/signup"
+              element={<PublicRoute element={<SignUpPage />} />}
+            />
+            <Route
+              path="/signin"
+              element={<PublicRoute element={<SignInPage />} />}
+            />
+            <Route path="/catalog" element={<ProductPage />} />
+            <Route
+              path="/catalog/:id"
+              element={<ProtectedRoute element={<ProductDetails />} />}
+            />
+          </Routes>
+        </Router>
+      </ProductProvider>
+    </AuthProvider>
   );
 }
 

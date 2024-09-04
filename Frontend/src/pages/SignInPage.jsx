@@ -62,7 +62,6 @@ const SignInPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      console.log(email, password);
       // Here add the logic for sent the data for server
     }
   };

@@ -43,10 +43,12 @@
 .buttons button {
     height: 50px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .form p {
     font-size: 14px;
+    cursor: pointer;
 }
 
 .logos {

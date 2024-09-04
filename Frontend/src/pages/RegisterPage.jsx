@@ -9,6 +9,7 @@ import GoogleIcon from '../assets/google-icon.png';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
+import { useNavigate } from 'react-router-dom';
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const facebookClientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;
@@ -35,12 +36,14 @@ const RegisterPage = () => {
     console.error('Facebook Login failed:', error);
   };
 
+  const navigate = useNavigate();
+
   const handleClickAlredyHaveAccount = () => {
-    console.log('Already have an account');
+    navigate('/signin');
   };
 
   const handleClickCreateNewAccount = () => {
-    console.log('Create a new account');
+    navigate('/signup');
   };
 
   const getUserProfile = async (accessToken) => {
@@ -76,7 +79,7 @@ const RegisterPage = () => {
             client_id={googleClientId}
             onResolve={handleGoogleSuccess}
             onReject={handleGoogleFailure}
-            className={styles.socialButton} // Use classes to style the button
+            className={styles.socialButton}
           >
             <Logo logo={GoogleIcon} width={'40px'} height={'40px'} />
           </LoginSocialGoogle>

@@ -3,13 +3,18 @@ package com.guardians_of_the_code.entities;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_request")
+@Getter
+@Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Request {
@@ -22,8 +27,8 @@ public class Request {
     @Column(nullable = false)
     private double price;
     @Column(nullable = false)
-    @JsonProperty("products")
-    private String products;
+    //@JsonProperty("products")
+    private List<String> products;
     @ManyToOne
     @JoinColumn(name = "client",nullable = false)
     private Client client;

@@ -1,5 +1,6 @@
 package com.guardians_of_the_code.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.ManyToOne;
@@ -20,10 +21,13 @@ public class RequestResDTO {
     private UUID id;
     private int quantity;
     private double price;
-    @JsonProperty("products")
-    private List<ProductIdDTO> products;
-    private ClientIdDTO client_id;
+    private List<String> products;
+    private String client_id;
     private double freight;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+
+    private String createdAt;
+
+    private String updatedAt;
+
+
 }

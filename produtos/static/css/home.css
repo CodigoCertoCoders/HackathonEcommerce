@@ -1,0 +1,47 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Piazzolla';
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    background: rgba(166, 166, 166, 1);
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 30px 30px 30px 550px;
+}
+
+form {
+    display: flex;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    height: 25px;
+}
+
+input {
+    border-radius: 70px;
+}
+
+.icons {
+    display: flex;
+    padding: 25px;
+}
+
+section {
+    color: #ffffff;
+}

@@ -1,6 +1,7 @@
 package com.guardians_of_the_code.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.guardians_of_the_code.dtos.ProductIdDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +27,10 @@ public class Request {
     private int quantity;
     @Column(nullable = false)
     private double price;
-    @Column(nullable = false)
-    //@JsonProperty("products")
-    private List<String> products;
+
+    @Column(columnDefinition = "JSON", nullable = false)
+    private String products;  // Aqui você armazenará o JSON
+
     @ManyToOne
     @JoinColumn(name = "client",nullable = false)
     private Client client;

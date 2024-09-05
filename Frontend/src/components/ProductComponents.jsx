@@ -17,8 +17,7 @@ const ProductCard = ({ name, price, photo, id }) => {
 
   return (
     <div className={styles.allProdCatalog}>
-      {/* <Link to={`/catalog/${id}`} onClick={handleGuestUser}> */}
-      <Link to={`/catalog/${id}`}>
+      <Link to={`/catalog/${id}`} onClick={handleGuestUser}>
         <img src={'photo'} className={styles.imgProd} />
         <div className={styles.legendaProd}>
           <p>{name}</p>

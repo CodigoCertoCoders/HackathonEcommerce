@@ -11,19 +11,24 @@ const AdressPage = () => {
 
   useEffect(() => {
     const loadGoogleMapsScript = () => {
-      const script = document.createElement('script');
-      script.src =
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyCdl7UJnQqnsVt483Qbesn7ESZGSqLfKxc&libraries=places';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => initializeAutocomplete();
-      document.body.appendChild(script);
+      if (!window.google) {
+        const script = document.createElement('script');
+        script.src =
+          'https://maps.googleapis.com/maps/api/js?key=AIzaSyCdl7UJnQqnsVt483Qbesn7ESZGSqLfKxc&libraries=places';
+        script.async = true;
+        script.defer = true;
+        script.onload = () => initializeAutocomplete();
+        document.body.appendChild(script);
+      } else {
+        initializeAutocomplete();
+      }
     };
 
     const initializeAutocomplete = () => {
       if (window.google && window.google.maps) {
         const autocomplete = new window.google.maps.places.Autocomplete(
           inputRef.current,
+          { types: ['geocode'] }, // Limitar sugestões a endereços
         );
 
         autocomplete.addListener('place_changed', () => {
@@ -38,7 +43,9 @@ const AdressPage = () => {
     loadGoogleMapsScript();
   }, []);
 
-  const handleBackArrow = () => {};
+  const handleBackArrow = () => {
+    // Função para lidar com clique na seta de voltar
+  };
 
   return (
     <section className={styles.section}>
@@ -47,7 +54,12 @@ const AdressPage = () => {
         <h2 className={fonts.robotoBold}>Endereço</h2>
       </header>
       <div className={styles.searchInput}>
-        <input ref={inputRef} type="text" placeholder="Digite o endereço" />
+        <input
+          ref={inputRef}
+          type="text"
+          placeholder="Digite o endereço"
+          autoComplete="off" // Desativa o autocomplete padrão do navegador
+        />
       </div>
       <div className={styles.divUseCurrentlyLocation}>
         <img src={targetIcon} alt="Target Icon" />

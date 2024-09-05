@@ -18,11 +18,6 @@ public class RequestService implements RequestInterface {
     private RequestRepository repository;
 
     @Override
-    public List<RequestResDTO> findRequestByClient(List<UUID> clientUuids) {
-        return repository.findRequestByClient(clientUuids);
-    }
-
-    @Override
     public RequestResDTO findRequest(UUID uuid) {
         return repository.findRequest(uuid);
     }

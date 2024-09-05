@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RequestInterface {
-    List<RequestResDTO> findRequestByClient(List<UUID> clientUuids);
     RequestResDTO findRequest(UUID uuid);
     Request saveRequest(RequestReqDTO request);
     MessageStatusDTO updateRequest(UUID uuid,RequestReqDTO request);

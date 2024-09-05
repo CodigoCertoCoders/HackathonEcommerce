@@ -1,12 +1,12 @@
 package com.guardians_of_the_code.repositories;
 
-import com.guardians_of_the_code.dtos.MessageStatusDTO;
-import com.guardians_of_the_code.dtos.RequestReqDTO;
-import com.guardians_of_the_code.dtos.RequestResDTO;
+import com.guardians_of_the_code.dtos.*;
+import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.entities.Request;
 import com.guardians_of_the_code.exceptions.HandleNotFoundException;
 import com.guardians_of_the_code.interfaces.JPAInterfaceRequest;
 import com.guardians_of_the_code.interfaces.RequestInterface;
+import com.guardians_of_the_code.services.ClientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +23,9 @@ public class RequestRepository implements RequestInterface {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ClientService service;
 
     @Override
     public List<RequestResDTO> findRequestByClient(List<UUID> clientUuids) {
@@ -63,12 +66,28 @@ public class RequestRepository implements RequestInterface {
         }
         Request existingRequest = requestModel.get();
 
-        if(request.getPrice() != 0 || request.getPrice() > 0){
-            //existingRequest
+        if(request.getPrice() > 0){
+            existingRequest.setPrice(request.getPrice());
         }
 
         if(request.getClient_id() != null){
-            //existingRequest
+            ClientResponseDTO clientDTO = service.findByClient(request.getClient_id().getId());
+            Client client = modelMapper.map(clientDTO,Client.class);
+
+            existingRequest.setClient(client);
+        }
+
+        if(request.getQuantity() > 0){
+            existingRequest.setQuantity(request.getQuantity());
+        }
+
+        if(request.getFreight() > 0){
+            existingRequest.setFreight(request.getFreight());
+        }
+
+        if(!request.getProducts().isEmpty()){
+            List<String> productsList = new ArrayList<>(request.getProducts());
+            existingRequest.setProducts(productsList);
         }
 
         jpaInterfaceRequest.save(existingRequest);

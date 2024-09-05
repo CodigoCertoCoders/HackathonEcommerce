@@ -4,36 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d10ede25-cd59-4f4a-a7d1-ee986e3c87dd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/configs/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/configs/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/configs/ModelMapperConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/configs/ModelMapperConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/controllers/ProductController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/dtos/ErrorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/dtos/ClientErrorDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/dtos/GetAllProductsResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/dtos/ProductRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/dtos/ProductResponseDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/entities/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/entities/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/entities/Product.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/enums/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/exceptions/HandleGlobalExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/exceptions/HandleGlobalExceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/exceptions/HandleProductsNotFoundException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/interfaces/JPAInterfaceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/interfaces/JPAInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/interfaces/JPAInterfaceProduct.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/interfaces/ProductInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/repositories/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/repositories/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/repositories/LoginRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/repositories/LoginRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/repositories/ProductRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/services/ProductService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/use_cases/CreateProductUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/use_cases/DeleteProductUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/use_cases/GetAllProductsUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/use_cases/GetProductByUuidUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/guardians_of_the_code/use_cases/UpdateProductUseCase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Logo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Logo.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/RegisterPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/css/ProductPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/css/ProductPage.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/src/pages/css/RegisterPage.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/pages/css/RegisterPage.module.css" afterDir="false" />
+    <list default="true" id="d10ede25-cd59-4f4a-a7d1-ee986e3c87dd" name="Changes" comment="merge">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,9 +23,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2ldNZUGTSW7ynt2pQDUcwfvF9Bo" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -63,10 +35,25 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging feat/back-requests",
+    "git-widget-placeholder": "feat/back-products",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="MalteX" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="MalteX" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,12 +79,22 @@
       <option name="project" value="LOCAL" />
       <updated>1725507572221</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="merge">
+      <option name="closed" value="true" />
+      <created>1725509914811</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725509914811</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="merge no conflicts" />
     <MESSAGE value="feat: created request with images" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: created request with images" />
+    <MESSAGE value="merge with main" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
 </project>

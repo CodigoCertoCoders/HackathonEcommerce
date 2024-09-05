@@ -2,3 +2,4 @@ db.sqlite3
 hackenv
 __pycache__
 ruff.toml
+database.db

@@ -1,41 +1,45 @@
-import React, { useContext, useEffect, useState } from "react";
-import ProductCard from "../components/ProductComponents";
-import FilterComponents from "../components/FilterComponents";
-import { ProductContext } from "../context/ProductContext";
+import React, { useContext, useEffect, useState } from 'react';
+import ProductCard from '../components/ProductComponents';
+import FilterComponents from '../components/FilterComponents';
+import { ProductContext } from '../context/ProductContext';
 import ShoppingCart from '../assets/shopping_cart.svg';
 import Person from '../assets/person.svg';
 import Search from '../assets/search.svg';
 import Adjustment from '../assets/adjustment.svg';
 import styles from './css/ProductPage.module.css';
-import productData from '../static/produtos.json'
+import productData from '../static/produtos.json';
 
 const ProductPage = () => {
-  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setActivateMaisPedidos} = useContext(ProductContext);
-  const [search , setSearch] = useState('')
-    
-  const handleSearch = (event) =>{
-    setSearch(event.target.value)
-  }
-  
-  const handleSubmit = (event) => {
-    if(search == ''){
-      setProducts(productData)
-    }else{
-      const filtered = products.filter(product =>
-        product.nome.toLowerCase().includes(search.toLowerCase()) ||
-        product.category.toLowerCase().includes(search.toLowerCase())
-      );
-      setProducts(filtered)
-     
-      
-    }
+  const {
+    products,
+    setProducts,
+    activateFilter,
+    setActivateFilter,
+    activateMaisPedidos,
+    setActivateMaisPedidos,
+  } = useContext(ProductContext);
+  const [search, setSearch] = useState('');
 
-    setSearch('') // Limpa o campo de pesquisa
-    setActivateMaisPedidos(false) // Volta a mostrar os produtos mais vendidos
-    event.preventDefault(); // Impede o recarregamento da página
-    
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    if (search == '') {
+      setProducts(productData);
+    } else {
+      const filtered = products.filter(
+        (product) =>
+          product.nome.toLowerCase().includes(search.toLowerCase()) ||
+          product.category.toLowerCase().includes(search.toLowerCase()),
+      );
+      setProducts(filtered);
+    }
+
+    setSearch(''); // Limpa o campo de pesquisa
+    setActivateMaisPedidos(false); // Volta a mostrar os produtos mais vendidos
+    event.preventDefault(); // Impede o recarregamento da página
+  };
 
   return (
     <div>
@@ -45,19 +49,31 @@ const ProductPage = () => {
           <h3>UserName</h3>
         </div>
         <div>
-          <img className={styles.img} src={ShoppingCart} alt="Carrinho de compras" />
+          <img
+            className={styles.img}
+            src={ShoppingCart}
+            alt="Carrinho de compras"
+          />
           <img className={styles.img} src={Person} alt="Ícone de pessoa" />
         </div>
       </section>
       <section className={styles.containersearch}>
-        <div style={{ position: 'relative', width: '250px', marginTop: '10px', marginBottom: '10px' }}>
-          <img src={Search}
+        <div
+          style={{
+            position: 'relative',
+            width: '250px',
+            marginTop: '10px',
+            marginBottom: '10px',
+          }}
+        >
+          <img
+            src={Search}
             style={{
               position: 'absolute',
               left: '5px',
               top: '45%',
               transform: 'translateY(-50%)',
-              color: "black"
+              color: 'black',
             }}
             alt="Ícone de busca"
           />
@@ -75,7 +91,7 @@ const ProductPage = () => {
               className={styles.input}
             />
           </form>
-          
+
           <i
             style={{
               position: 'absolute',
@@ -88,23 +104,37 @@ const ProductPage = () => {
             className="fas fa-times"
           ></i>
         </div>
-        <img onClick={()=>{setActivateFilter(true) , setActivateMaisPedidos(false)}}className={styles.imgAdjustment} src={Adjustment} alt="Ícone de ajuste" />
+        <img
+          onClick={() => {
+            setActivateFilter(true), setActivateMaisPedidos(false);
+          }}
+          className={styles.imgAdjustment}
+          src={Adjustment}
+          alt="Ícone de ajuste"
+        />
       </section>
-      <div className={`${''} ${activateMaisPedidos === true ? '' : styles.notFilterPage}`}>
-
-          <h3>Mais pedidos</h3>
-          <section className={styles.sectionMaisPedidos}>
-            <div className={styles.catalogProd}>
-              {products.map((prod) => (
-                <img key={prod.nome} src={prod.foto} className={styles.imgProd} alt={prod.nome} />
-              ))}
-            </div>
-          </section>
+      <div
+        className={`${''} ${
+          activateMaisPedidos === true ? '' : styles.notFilterPage
+        }`}
+      >
+        <h3>Mais pedidos</h3>
+        <section className={styles.sectionMaisPedidos}>
+          <div className={styles.catalogProd}>
+            {products.map((prod) => (
+              <img
+                key={prod.nome}
+                src={prod.foto}
+                className={styles.imgProd}
+                alt={prod.nome}
+              />
+            ))}
+          </div>
+        </section>
       </div>
-      
 
       <h3>Todas as bebidas</h3>
-        
+
       <section className={styles.allProducts}>
         {products.map((prod) => (
           <ProductCard
@@ -115,13 +145,16 @@ const ProductPage = () => {
             id={prod.id}
           />
         ))}
-
       </section>
-      <div className={`${styles.filterPage} ${activateFilter === true ? styles.filterPage : styles.notFilterPage}`}>
-          <FilterComponents />
-        </div>
+      <div
+        className={`${styles.filterPage} ${
+          activateFilter === true ? styles.filterPage : styles.notFilterPage
+        }`}
+      >
+        <FilterComponents />
+      </div>
     </div>
   );
-}
+};
 
 export default ProductPage;

@@ -9,6 +9,7 @@ import SignInPage from './pages/SignInPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthProvider';
 import PublicRoute from './components/PublicRoute';
+import AdressPage from './pages/AdressPage';
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}
+            />
+            <Route
+              path="/adress"
+              element={<PublicRoute element={<AdressPage />} />}
             />
           </Routes>
         </Router>

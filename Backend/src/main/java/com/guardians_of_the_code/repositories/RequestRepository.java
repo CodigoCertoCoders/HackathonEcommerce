@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.*;
 import com.guardians_of_the_code.dtos.*;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.entities.Request;
-import com.guardians_of_the_code.exceptions.HandleBadRequestException;
 import com.guardians_of_the_code.exceptions.HandleNotFoundException;
 import com.guardians_of_the_code.interfaces.JPAInterfaceRequest;
 import com.guardians_of_the_code.interfaces.RequestInterface;
@@ -15,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -36,28 +36,34 @@ public class RequestRepository implements RequestInterface {
     @Autowired
     private ProductService productService;
 
-    @Override
-    public List<RequestResDTO> findRequestByClient(List<UUID> clientUuids) {
-        List<Request> requests = jpaInterfaceRequest.findByClientsIdInRequest(clientUuids);
-        if(requests.isEmpty()){
-            throw new HandleNotFoundException("Pedidos");
-        }
-        List<RequestResDTO> requestResDTOSList = new ArrayList<>();
-        for (Request request:requests){
-            RequestResDTO requestRes = modelMapper.map(request,RequestResDTO.class);
-            requestResDTOSList.add(requestRes);
-        }
-
-        return requestResDTOSList;
-    }
 
     @Override
     public RequestResDTO findRequest(UUID uuid) {
-        Optional<Request> request = jpaInterfaceRequest.findById(uuid);
-        if(request.isEmpty()){
-            throw new HandleNotFoundException("Pedido");
+       Request request = jpaInterfaceRequest.findById(uuid)
+                .orElseThrow(() -> new HandleNotFoundException("Pedido não encontrado"));
+
+        String productsId = request.getProducts();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<String> productList = new ArrayList<>();
+
+        try {
+
+            String[] products = objectMapper.readValue(productsId, String[].class);
+            for (String product : products) {
+                productList.add(product);
+                System.out.println(product);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return modelMapper.map(request,RequestResDTO.class);
+
+        String clientId = String.valueOf(request.getClient().getId());
+        String createdAt= String.valueOf(request.getCreatedAt()); // Converte de String para LocalDateTime
+        String updatedAt= String.valueOf(request.getUpdatedAt()); // Converte de String para LocalDateTime
+
+        return new RequestResDTO(request.getId(),request.getQuantity(), request.getPrice(), productList,clientId, request.getFreight(),createdAt,updatedAt);
+
     }
 
     public Request saveRequest(RequestReqDTO request) {
@@ -72,7 +78,6 @@ public class RequestRepository implements RequestInterface {
 
         System.out.println("prodcts  request"+request.getProducts());
 
-        // Converte a lista de IDs para JSON
         String productsJson;
         try {
             productsJson = objectMapper.writeValueAsString(request.getProducts());

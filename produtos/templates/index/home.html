@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap"
+        rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Di Napoli</title>
+</head>
+
+<body>
+    <header>
+        <img class="title" src="{% static 'images/Title Di Napoli.png' %}" alt="Titulo Di Napoli">
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="O que você está procurando?" />
+            <button type="submit">Pesquisar</button>
+        </form>
+        <div class="icons">
+            <img width="40" height="40" src="https://img.icons8.com/ios/50/login-rounded-right--v1.png"
+                alt="login-rounded-right--v1" />
+            <img width="40" height="40" src="https://img.icons8.com/ios/50/shopping-cart-loaded--v1.png"
+                alt="shopping-cart-loaded--v1" />
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2>Promoções do dia:</h2>
+        </section>
+    </main>
+</body>
+
+</html>

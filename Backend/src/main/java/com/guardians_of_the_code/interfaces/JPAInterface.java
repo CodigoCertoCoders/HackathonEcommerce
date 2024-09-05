@@ -2,13 +2,16 @@ package com.guardians_of_the_code.interfaces;
 
 import com.guardians_of_the_code.entities.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface JPAInterfaceClient extends JpaRepository<Client,UUID> {
+public interface JPAInterface extends JpaRepository<Client,UUID> {
     // clients
     boolean existsClientByEmail(String email);
 

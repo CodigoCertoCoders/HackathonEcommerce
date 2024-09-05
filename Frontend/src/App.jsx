@@ -29,6 +29,8 @@ function App() {
               element={<PublicRoute element={<SignInPage />} />}
             />
             <Route path="/catalog" element={<ProductPage />} />
+        
+
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}

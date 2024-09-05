@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,7 +16,7 @@ import java.util.List;
 public class RequestReqDTO {
     private int quantity;
     private double price;
-    //@JsonProperty("products")
+    @JsonProperty("products")
     private List<String> products;
     private ClientIdDTO client_id;
     private double freight;

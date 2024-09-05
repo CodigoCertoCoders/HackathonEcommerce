@@ -20,8 +20,8 @@ public class RequestResDTO {
     private UUID id;
     private int quantity;
     private double price;
-    //@JsonProperty("products")
-    private List<String> products;
+    @JsonProperty("products")
+    private List<ProductIdDTO> products;
     private ClientIdDTO client_id;
     private double freight;
     private LocalDateTime createdAt;

@@ -11,7 +11,7 @@ import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
 
 import { GoogleLogin } from '@react-oauth/google';
-
+=======
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';

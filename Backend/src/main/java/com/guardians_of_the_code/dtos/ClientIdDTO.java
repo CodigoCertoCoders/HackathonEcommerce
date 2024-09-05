@@ -9,8 +9,15 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-@AllArgsConstructor
+
 public class ClientIdDTO {
     private UUID id;
+
+    public ClientIdDTO(){
+
+    }
+
+    public ClientIdDTO(String id){
+        this.id = UUID.fromString(id);
+    }
 }

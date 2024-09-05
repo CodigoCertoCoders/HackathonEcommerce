@@ -1,7 +1,6 @@
 # Documentação do Projeto
 
 ## Introdução
-
 **MalteX** é uma solução projetada para simplificar o processo de pedidos tanto para clientes quanto para a equipe da Distribuidora de Bebidas MalteX. A aplicação oferece uma interface intuitiva e eficiente que permite aos clientes fazer pedidos de forma rápida e conveniente, enquanto também proporciona aos funcionários uma forma de lidar com os pedidos com facilidade.
 
 ## Convenções de Commit
@@ -11,7 +10,6 @@
 Para garantir um histórico de commits claro e organizado, siga as convenções abaixo:
 
 - **Tipo de Commit**: Identifique o tipo de mudança realizada usando categorias padronizadas:
-
   - `feat` para novas funcionalidades
   - `fix` para correções de bugs
   - `docs` para alterações na documentação
@@ -35,13 +33,11 @@ Esta estrutura ajuda a manter a clareza e a organização no histórico de commi
 ## Horários das Dailies
 
 ### Frequência
-
 - **Dias da Semana**: Todos os dias ímpares
 - **Horário**: 13:30 - 13:45
 - **Local**: Discord
 
 ### Agenda
-
 - Atualizações do progresso.
 - Obstáculos encontrados.
 - Planejamento para os dois próximos dias.
@@ -49,7 +45,6 @@ Esta estrutura ajuda a manter a clareza e a organização no histórico de commi
 ## Workflow com Git
 
 ### Fluxo de Trabalho
-
 1. **Branch Principal**: `main` ou `master`
 2. **Branches de Funcionalidade**: `feature/nomedafuncionalidade`
 3. **Branches de Correção**: `fix/nomedocorrigido`
@@ -60,22 +55,19 @@ Esta estrutura ajuda a manter a clareza e a organização no histórico de commi
 ## Diretrizes para o Trello
 
 ### Estrutura de Tarefas
-
 - **Título da Tarefa**: Resumo da tarefa.
 - **Descrição**: Detalhes sobre o que precisa ser feito.
 - **Critérios de aceitação**: Checklist dos critérios de aceitação
 - **Checklist**: Checklist para auxiliar no processo de desenvolvimento
 
 ### Status das Tarefas
-
 - **To Do**: Tarefas a serem feitas.
 - **In Progress**: Tarefas em andamento.
 - **Review**: Tarefas aguardando revisão.
 - **Done**: Tarefas concluídas.
 
 ### Exemplos de Tarefas
-
 - **Tarefa**: Adicionar página de login
 - **Descrição**: Criar a página de login com autenticação básica.
 
-**Figma do projeto**: (https://www.figma.com/design/UWIjqWnkBj8YliJQOdI2Ce/Untitled?node-id=0-1&t=cUlibsryxMCMXjPs-1)
+**Figma do projeto**: (https://www.figma.com/design/UWIjqWnkBj8YliJQOdI2Ce/Untitled?node-id=0-1&t=cUlibsryxMCMXjPs-1) 

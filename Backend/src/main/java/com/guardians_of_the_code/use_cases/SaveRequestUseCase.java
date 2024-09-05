@@ -51,22 +51,9 @@ public class SaveRequestUseCase {
         }
 
         // Valida e converte a lista de produtos para JSON
-        List<String> productUUIDStrings = request.getProducts();
+        List<String> productsName = request.getProducts();
 
-        for(String product: productUUIDStrings){
-            boolean existsProductByUUID=productService.existsByUUID(UUID.fromString(product));
-            if(!existsProductByUUID){
-                throw new HandleNotFoundException("Produto");
-            }
-        }
-
-        // Cria a solicitação com a lista de UUIDs como Strings
-        request.setProducts(productUUIDStrings);
-
-        // Chama o serviço para salvar a solicitação
-
-
-
+        request.setProducts(productsName);
 
         return service.saveRequest(request);
 

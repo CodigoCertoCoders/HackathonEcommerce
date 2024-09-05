@@ -15,7 +15,7 @@ import java.util.List;
 public class RequestReqDTO {
     private int quantity;
     private double price;
-    @JsonProperty("products")
+    //@JsonProperty("products")
     private List<String> products;
     private ClientIdDTO client_id;
     private double freight;

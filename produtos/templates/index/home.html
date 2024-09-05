@@ -32,6 +32,51 @@
     <main>
         <section>
             <h2>Promoções do dia:</h2>
+            {% for pizza in pizzas %}
+            {% if pizza.category == 'DOCE' %}
+            <div>
+                <img height="50" src="{% static 'images/pizza_doce.jpg' %}">
+                <div>
+                    {{pizza.name}}
+                </div>
+                <div>
+                    {{pizza.price}}
+                </div>
+                <div>
+                    {{pizza.description}}
+                </div>
+            </div>
+            {%endif%}
+            {% endfor %}
+
+            {% for pizza in pizzas %}
+            {% if pizza.category == 'SALGADA' %}
+            <div>
+                <img height="50" src="{% static 'images/pizza_salgada.jpg' %}">
+                <div>
+                    {{pizza.name}}
+                </div>
+                <div>
+                    {{pizza.price}}
+                </div>
+                <div>
+                    {{pizza.description}}
+                </div>
+            </div>
+            {%endif%}
+            {% endfor %}
+
+            {% for bebida in bebidas %}
+            <div>
+                <img height="50" src="{% static 'images/refrigerante.png' %}">
+                <div>
+                    {{bebida.name}}
+                </div>
+                <div>
+                    {{bebida.price}}
+                </div>
+            </div>
+            {% endfor %}
         </section>
     </main>
 </body>

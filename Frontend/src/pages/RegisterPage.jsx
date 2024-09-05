@@ -7,15 +7,17 @@ import fonts from '../fonts/fonts.module.css';
 import GreenButton from '../components/GreenButton';
 import WhiteButton from '../components/WhiteButton';
 
-import GoogleIcon from '../assets/google-icon.png';
 import FacebookIcon from '../assets/facebook-icon.png';
 import Logo from '../components/Logo';
+
+import { GoogleLogin } from '@react-oauth/google';
+
 import { LoginSocialGoogle, LoginSocialFacebook } from 'reactjs-social-login';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const facebookClientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;
+
+const clientId = 'process.env.REACT_APP_GOOGLE_CLIENT_ID';
 
 const RegisterPage = () => {
   const viewportHeight = useViewportHeight();
@@ -25,6 +27,17 @@ const RegisterPage = () => {
   const handleGuestLoginClick = () => {
     navigate('/catalog');
   };
+
+
+  const onSuccess = (response) => {
+    console.log(response);
+  };
+
+  const onFailure = () => {
+    console.log('Login failed');
+  };
+
+  const handleLoginWithFacebook = () => {};
 
   const handleGoogleSuccess = (response) => {
     // logic for google login
@@ -62,23 +75,31 @@ const RegisterPage = () => {
     }
   };
 
+
   return (
     <section className={styles.container} style={{ height: viewportHeight }}>
       <div className={styles.background}></div>
       <div className={`${styles.form} ${fonts.montserratMedium}`}>
         <h1 className={styles.computerText}>Welcome!</h1>
         <div className={styles.buttons}>
-          <GreenButton
-            onClick={handleClickAlredyHaveAccount}
-            text={'Já tenho uma conta'}
-          />
-          <WhiteButton
-            onClick={handleClickCreateNewAccount}
-            text={'Criar nova conta'}
-          />
+          <GreenButton text={'Já tenho uma conta'} />
+          <WhiteButton text={'Criar nova conta'} />
         </div>
         <p className={fonts.latoMedium}> Acessar com</p>
         <div className={styles.logos}>
+
+          <GoogleLogin
+            clientId={clientId}
+            onSuccess={onSuccess}
+            onError={onFailure}
+          />
+          <Logo
+            onClick={handleLoginWithFacebook}
+            logo={FacebookIcon}
+            width={'40px'}
+            height={'40px'}
+          />
+
           <LoginSocialGoogle
             client_id={googleClientId}
             onResolve={handleGoogleSuccess}
@@ -95,6 +116,7 @@ const RegisterPage = () => {
           >
             <Logo logo={FacebookIcon} width={'40px'} height={'40px'} />
           </LoginSocialFacebook>
+
         </div>
         <p
           onClick={handleGuestLoginClick}

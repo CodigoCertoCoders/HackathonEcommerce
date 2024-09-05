@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Client extends RepresentationModel<Client> {
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(columnDefinition = "BINARY(16)")

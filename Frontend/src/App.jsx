@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthProvider';
 import PublicRoute from './components/PublicRoute';
 import AdressPage from './pages/AdressPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}
             />
+            <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </Router>
       </ProductProvider>

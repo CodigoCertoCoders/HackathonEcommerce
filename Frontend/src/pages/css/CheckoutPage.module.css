@@ -1,0 +1,136 @@
+/* Centraliza o conteúdo dentro de .centralizeDiv */
+.centralizeDiv {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto; /* Adiciona margem automática para centralizar horizontalmente */
+}
+
+/* Adiciona margem automática para centralizar o card */
+.cardUserAdress,
+.cardPayment {
+    margin: 15px auto; /* Centraliza horizontalmente */
+    width: 100%;
+    max-width: 800px; /* Limita a largura máxima */
+}
+
+/* Para centralizar o botão na tela */
+.buttonSubmit {
+    width: calc(100% - 32px);
+    padding: 20px;
+    font-size: 16px;
+    background-color: green;
+    color: white; 
+    border: none; 
+    cursor: pointer;
+    position: fixed;
+    bottom: 16px;
+    left: 50%; /* Move para o meio da tela */
+    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    box-sizing: border-box; 
+}
+
+/* Mantém as propriedades dos outros elementos como estão */
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.header img{
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+}
+
+.cardUserAdress {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    border-radius: 20px;
+    margin-top: 15px;
+    position: relative;
+}
+  
+.cardUserAdress img {
+    width: 28px;
+    height: auto;
+    margin-right: 10px;
+}
+  
+.cardUserAdressInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+  
+.editText {
+    color: #294122;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    position: absolute;
+    bottom: 22px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+  
+.editButton:hover {
+    opacity: 0.9;
+}
+
+.cardPayment {
+    margin-top: 15px;
+    padding: 20px 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000000;
+    border-radius: 20px;
+}
+
+.cardPayment h3 {
+    margin-left: 10px;
+    width: 100%;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+/* Estilos gerais para mobile (mobile-first) */
+.buttonSubmit {
+    width: calc(100% - 32px);
+    padding: 20px;
+    font-size: 16px;
+    background-color: green;
+    color: white; 
+    border: none; 
+    cursor: pointer;
+    position: fixed;
+    bottom: 16px;
+    left: 50%; /* Move para o meio da tela */
+    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    box-sizing: border-box; 
+}
+
+@media screen and (min-width: 700px) {
+    .buttonSubmit {
+        width: calc(100% + 45px);
+        position: static;
+        transform: none;
+        margin-left: 5px;
+    }
+}

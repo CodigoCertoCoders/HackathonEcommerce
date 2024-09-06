@@ -27,19 +27,27 @@ const RegisterPage = () => {
   };
 
   const handleGoogleSuccess = (response) => {
-    // logic for google login
+    const { user_info } = response;
+    const { name, email, picture } = user_info;
+    console.log('Login com google realizado');
+    console.log(name, email, picture);
+    // Send data to backend >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   };
 
   const handleGoogleFailure = (error) => {
-    // logic for google failure
+    console.log(`Tivemos algum problema no login com google ${error}`);
   };
 
   const handleFacebookSuccess = (response) => {
-    // logic for facebook login
+    const { data } = response;
+    const { first_name, email, picture } = data;
+    console.log('Login com facebook realizado');
+    console.log(first_name, email, picture.data.url);
+    // Send data to backend >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   };
 
   const handleFacebookFailure = (error) => {
-    // logic for facebook failure
+    console.log(`Tivemos algum problema no login com Facebook ${error}`);
   };
 
   const handleClickAlredyHaveAccount = () => {
@@ -50,17 +58,17 @@ const RegisterPage = () => {
     navigate('/signup');
   };
 
-  const getUserProfile = async (accessToken) => {
-    try {
-      const response = await fetch(
-        `https://graph.facebook.com/me?fields=email,name&access_token=${accessToken}`,
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Error fetching data from Facebook API:', error);
-    }
-  };
+  // const getUserProfile = async (accessToken) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://graph.facebook.com/me?fields=email,name&access_token=${accessToken}`,
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Error fetching data from Facebook API:', error);
+  //   }
+  // };
 
   return (
     <section className={styles.container} style={{ height: viewportHeight }}>
@@ -77,7 +85,10 @@ const RegisterPage = () => {
             text={'Criar nova conta'}
           />
         </div>
-        <p className={fonts.latoMedium}> Acessar com</p>
+        <p style={{ cursor: 'default' }} className={fonts.latoMedium}>
+          {' '}
+          Acessar com
+        </p>
         <div className={styles.logos}>
           <LoginSocialGoogle
             client_id={googleClientId}

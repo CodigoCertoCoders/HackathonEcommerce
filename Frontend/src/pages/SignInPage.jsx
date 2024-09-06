@@ -10,7 +10,7 @@ const SignInPage = () => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate('/');
+    navigate(-1);
   };
 
   const handleForgetPassword = () => {
@@ -28,6 +28,7 @@ const SignInPage = () => {
 
   const validatePassword = (password) => {
     if (!password) return 'A senha é obrigatória.';
+    if (password.length < 8) return 'Senha deve ter pelo menos 8 caracteres.';
     return '';
   };
 
@@ -62,7 +63,9 @@ const SignInPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      // Here add the logic for sent the data for server
+      console.log(`Mandar dados para o backend
+        email: ${email},
+        password: ${password}`);
     }
   };
 

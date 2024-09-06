@@ -91,7 +91,7 @@ const RegisterPage = () => {
           <LoginSocialGoogle
             client_id={googleClientId}
             onResolve={handleGoogleSuccess}
-            onReject={handleGoogleFailure}
+            onReject={handleGoogleSuccess}
             className={styles.socialButton}
           >
             <Logo logo={GoogleIcon} width={'40px'} height={'40px'} />

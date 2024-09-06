@@ -59,26 +59,9 @@ const SignUpPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      const url = 'https://maltex-back-production.up.railway.app/clients/'; // URL da API
-      const data = {
-        name: '',
-        cep: '',
-        email: email,
-        phone: '',
-        password: password,
-      };
-
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Success:', data);
-        });
+      console.log(`Mandar dados para o backend
+        email: ${email},
+        senha: ${password}`);
     }
   };
 

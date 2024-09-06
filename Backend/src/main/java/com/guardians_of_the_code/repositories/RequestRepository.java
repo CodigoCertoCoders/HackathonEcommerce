@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.*;
 import com.guardians_of_the_code.dtos.*;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.entities.Request;
+import com.guardians_of_the_code.exceptions.HandleBadRequestException;
 import com.guardians_of_the_code.exceptions.HandleNotFoundException;
 import com.guardians_of_the_code.interfaces.JPAInterfaceRequest;
 import com.guardians_of_the_code.interfaces.RequestInterface;
@@ -73,6 +74,9 @@ public class RequestRepository implements RequestInterface {
         requestModel.setFreight(request.getFreight());
 
         ClientResponseDTO clientResponseDTO=service.findByClient(request.getClient_id().getId());
+        if(!clientResponseDTO.getCity().equals("Sao Paulo") || !clientResponseDTO.getCity().equals("São Paulo") || !clientResponseDTO.getCity().equals("Sao_Paulo")){
+            throw new HandleBadRequestException("Cliente deve morar na cidade de São Paulo");
+        }
         Client client=modelMapper.map(clientResponseDTO,Client.class);
         requestModel.setClient(client);
 

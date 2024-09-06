@@ -1,7 +1,15 @@
+import { useContext, useEffect } from 'react';
 import style from './css/CartComponents.module.css'
+import { ProductContext } from '../context/ProductContext';
 
-const CartComponents = ({foto , nome, qtd , preco}) =>{
+const CartComponents = ({foto , nome, qtd , preco, id}) =>{
+    const { cartProd, updateQtd } = useContext(ProductContext);
 
+    useEffect(() => {
+       
+        // updateQtd()
+         
+     }, [cartProd]);
     return(
         <>
             <div className={style.container}>
@@ -16,9 +24,9 @@ const CartComponents = ({foto , nome, qtd , preco}) =>{
             </section>
 
             <section className={style.containerButtons}>
-                <button className={style.buttonIncrement}>+</button>
+                <button onClick={() => updateQtd(id , qtd + 1 )} className={style.buttonIncrement}>+</button>
                 <p>{qtd}</p>
-                <button className={style.buttonDecrement}>-</button>
+                <button onClick={() => updateQtd(id , qtd - 1 )} className={style.buttonDecrement}>-</button>
             </section>
            
             </div>

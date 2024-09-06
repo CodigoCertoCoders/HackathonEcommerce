@@ -1,7 +1,11 @@
 import { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import style from './css/ProductDetails.module.css'
+import arrow  from '../assets/arrow_back.svg'
+import cart  from '../assets/shopping_Cart.svg'
+
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -28,6 +32,20 @@ const ProductDetails = () => {
   }
   return (
     <div>
+        <section className={style.header}>
+          <div >
+            <Link className={style.headerLink}to={"/catalog"}>
+              <img src={arrow}/>
+              <p>Back</p>
+            </Link>
+            
+          </div>
+            <div className={style.headerLink}>
+            <Link to={"/cart"}>
+                <img src={cart}/>
+            </Link>
+            </div>
+        </section>
         <section className={style.photo}>
 
           <img src={item.foto}/>
@@ -55,7 +73,9 @@ const ProductDetails = () => {
             <button className={style.buttonAdd}onClick={() =>addToCart(item , qtd)}>
               Adicionar ao carrinho
             </button>
-            <button className={style.buttonComprar}>Comprar</button>
+            <Link to={"/cart"}>
+              <button className={style.buttonComprar}>Comprar</button>
+            </Link>
 
 
         </section>

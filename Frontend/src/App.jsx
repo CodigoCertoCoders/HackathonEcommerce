@@ -42,10 +42,15 @@ function App() {
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}
-            />
+            /> 
             <Route
               path="/checkout"
               element={<ProtectedRoute element={<CheckoutPage />} />}
+            />
+
+            <Route
+              path="/cart"
+              element={<PublicRoute element={<CartPage />} />}
             />
           </Routes>
         </ProductProvider>

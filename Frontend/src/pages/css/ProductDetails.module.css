@@ -1,0 +1,88 @@
+.photo{
+    background-color: red;
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.containerButton{
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.buttonGreen{
+    background-color: #294122;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 30px;
+    font-size: 15px;
+    border: none;
+}
+
+.buttonWhite{
+    background-color: #d9d9d9;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    width: 30px;
+    font-size: 15px;
+    border: none;
+}
+
+.p{
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+
+.description{
+    margin: 10px;
+}
+.description>p{
+    margin-top: 10px;
+}
+
+
+.containerButtonCart{
+    width: 100%;
+    height: 32vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.buttonAdd{
+    background-color:  #294122;
+    width: 60vw;
+    height: 5vh;
+    padding: 10px;
+    border: none;
+    margin-bottom: 10px;
+    color: white;
+    border-radius: 10px;
+}
+
+.buttonComprar{
+    background-color:  #294122;
+    width: 60vw;
+    height: 5vh;
+    padding: 10px;
+    border: none;
+    margin-bottom: 40px;
+    color: white;
+    border-radius: 10px;
+}

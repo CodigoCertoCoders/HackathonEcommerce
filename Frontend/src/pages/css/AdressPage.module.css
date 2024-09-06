@@ -1,0 +1,184 @@
+.section {
+    max-width: 800px; /* Largura máxima da section */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    display: flex; /* Ativa o flexbox */
+    flex-direction: column; /* Alinha os itens em coluna (verticalmente) */
+    justify-content: center; /* Centraliza verticalmente se a altura for maior */
+}
+
+
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.header img{
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+}
+
+.searchInput {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.searchInput input {
+    width: 80%;
+    background: url('../../assets/search.svg') no-repeat 10px center;
+    background-size: 28px 28px;
+    height: 55px;
+    background-color: #EEEEEF;
+    border: 1px solid transparent; /* Defina uma borda transparente por padrão */
+    border-radius: 30px;
+    padding-left: 45px;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchInput input:focus {
+    border-color: #294122; /* Cor da borda no foco, exemplo com azul */
+    box-shadow: 0 0 0 4px rgba(41, 65, 34, 0.2);
+}
+
+.divUseCurrentlyLocation {
+    margin-top: 30px;
+    display: flex;
+    padding-left: 8%;
+    justify-content: start;
+    cursor: pointer;
+}
+
+.divUseCurrentlyLocation img {
+    margin-right: 10px;
+}
+
+.myAdress {
+    margin-top: 30px;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    padding: 24px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .modalContent h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .modalContent label {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  .modalContent input {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .submitButton {
+    background-color: #294122;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .cancelButton {
+    background-color: #ffffff;
+    color: #294122;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+
+  .submitButton:hover {
+    background-color: #1f2e1b;
+  }
+  
+  .cancelButton:hover {
+    background-color: #d8d8d8;
+  }
+  
+
+.cardUserAdress {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    margin-top: 15px;
+    position: relative;
+  }
+  
+  .cardUserAdress img {
+    width: 28px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .cardUserAdressInfo {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .editText {
+    color: #294122;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    position: absolute;
+    bottom: 22px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .editButton:hover {
+    opacity: 0.9;
+  }
+  

@@ -43,3 +43,10 @@ SUBSTRING(HEX(id), 21, 12)
 
 
 -------------------------------------------------
+
+### Swagger
+#### [Link Swagger](https://maltex-back-production.up.railway.app/swagger-ui/index.html)
+
+-------------------------------------------------
+### Link da produção
+#### https://maltex-back-production.up.railway.app

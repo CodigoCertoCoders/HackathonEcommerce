@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'produtos',
+    'api',
+    'carrinho',
+    'integwhatsap',
+    'main',
+    'pedidos',
+    'usuarios',   
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+LOGIN_URL = '/login/'  # URL para redirecionar usuários não autenticados
+LOGIN_REDIRECT_URL = '/'  # URL para redirecionar após login
+LOGOUT_REDIRECT_URL = '/'  # URL para redirecionar após logout
 
 ROOT_URLCONF = 'pizzaria.urls'
 

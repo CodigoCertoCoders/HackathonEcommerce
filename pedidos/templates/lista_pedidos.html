@@ -1,0 +1,10 @@
+<h1>Meus Pedidos</h1>
+<ul>
+    {% for pedido in pedidos %}
+        <li>
+            <a href="{% url 'detalhe_pedido' pedido.id %}">
+                Pedido #{{ pedido.id }} - Total: R${{ pedido.total }} - Status: {{ pedido.status }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

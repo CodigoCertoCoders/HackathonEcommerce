@@ -1,0 +1,10 @@
+<h1>Detalhes do Pedido #{{ pedido.id }}</h1>
+<p>Status: {{ pedido.status }}</p>
+<p>Total: R${{ pedido.total }}</p>
+
+<h2>Itens</h2>
+<ul>
+    {% for item in pedido.itens.all %}
+        <li>{{ item.quantidade }}x {{ item.produto.nome }} - R${{ item.get_total }}</li>
+    {% endfor %}
+</ul>

@@ -20,22 +20,6 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("Nome não pode ser vazio ou nulo");
         }
 
-        if(request.getUf().isEmpty() || request.getUf().isBlank()){
-            throw new HandleBadRequestException("Uf não pode ser vazia ou nula");
-        }
-
-        if(request.getCity().isEmpty() || request.getCity().isBlank()){
-            throw new HandleBadRequestException("Cidade não pode ser vazia ou nula");
-        }
-
-        if(request.getNeighborhood().isEmpty() || request.getNeighborhood().isBlank()){
-            throw new HandleBadRequestException("Bairro não pode ser vazia ou nula");
-        }
-
-        if(request.getRoad().isEmpty() || request.getRoad().isBlank()){
-            throw new HandleBadRequestException("Rua não pode ser vazia ou nula");
-        }
-
         if(request.getEmail().isEmpty() || request.getEmail().isBlank()){
             throw new HandleBadRequestException("Email não pode ser vazio ou nulo");
         }
@@ -48,8 +32,10 @@ public class UpdateClientUseCase {
             throw new HandleBadRequestException("Senha não pode ser vazia ou nula");
         }
 
-        if(request.getUf().length() != 2){
-            throw new HandleBadRequestException("UF deve  conter 2 caracteres");
+        if(request.getUf() != null){
+            if(request.getUf().length() != 2){
+                throw new HandleBadRequestException("UF deve  conter 2 caracteres");
+            }
         }
 
         if(request.getName().length() > 30){
@@ -61,7 +47,7 @@ public class UpdateClientUseCase {
         }
 
         if(request.getPhone().length() != 11){
-            throw new HandleBadRequestException("O cep deve seguir o formato 99221111111,contendo 11 caracteres");
+            throw new HandleBadRequestException("O telefone deve seguir o formato 99221111111,contendo 11 caracteres");
         }
 
         if(request.getPassword().length() > 100 || request.getPassword().length() < 8){

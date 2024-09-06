@@ -23,7 +23,7 @@ const RegisterPage = () => {
   const { login } = React.useContext(AuthContext);
 
   const handleGuestLoginClick = () => {
-    navigate('/adress'); //modify after to /catalog
+    navigate('/catalog');
   };
 
   const handleGoogleSuccess = (response) => {

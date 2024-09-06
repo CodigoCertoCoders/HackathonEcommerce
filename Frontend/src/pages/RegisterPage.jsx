@@ -27,10 +27,8 @@ const RegisterPage = () => {
   };
 
   const handleGoogleSuccess = (response) => {
-    const { user_info } = response;
-    const { name, email, picture } = user_info;
+    console.log(response);
     console.log('Login com google realizado');
-    console.log(name, email, picture);
     // Send data to backend >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   };
 

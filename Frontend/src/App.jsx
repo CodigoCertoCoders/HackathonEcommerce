@@ -31,17 +31,22 @@ function App() {
               path="/signin"
               element={<PublicRoute element={<SignInPage />} />}
             />
-            <Route path="/catalog" element={<PublicRoute element={<ProductPage />} />} />
-            <Route path="/adress" element={<ProtectedRoute element={<AdressPage />} />} />
-             <Route
-              path="/cart"
-              element={<CartPage/>}
+            <Route
+              path="/catalog"
+              element={<PublicRoute element={<ProductPage />} />}
+            />
+            <Route
+              path="/adress"
+              element={<ProtectedRoute element={<AdressPage />} />}
             />
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}
             />
-            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route
+              path="/checkout"
+              element={<ProtectedRoute element={<CheckoutPage />} />}
+            />
           </Routes>
         </Router>
       </ProductProvider>

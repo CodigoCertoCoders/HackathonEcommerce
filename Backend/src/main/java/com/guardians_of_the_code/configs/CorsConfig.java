@@ -10,7 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://malte-x.vercel.app", "http://localhost:8080","https://maltex-back-production.up.railway.app/","https://maltex-back-production.up.railway.app/swagger-ui/index.html","http://localhost:8080/swagger-ui/index.html")
+                .allowedOrigins("https://malte-x.vercel.app", "http://localhost:8080","https://maltex-back-production.up.railway.app/","https://maltex-back-production.up.railway.app/swagger-ui/index.html","http://localhost:8080/swagger-ui/index.html","http://localhost:5173")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .allowCredentials(true);

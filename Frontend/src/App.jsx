@@ -9,6 +9,9 @@ import SignInPage from './pages/SignInPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthProvider';
 import PublicRoute from './components/PublicRoute';
+import AdressPage from './pages/AdressPage';
+import CheckoutPage from './pages/CheckoutPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -28,10 +31,21 @@ function App() {
               path="/signin"
               element={<PublicRoute element={<SignInPage />} />}
             />
-            <Route path="/catalog" element={<ProductPage />} />
+            <Route
+              path="/catalog"
+              element={<PublicRoute element={<ProductPage />} />}
+            />
+            <Route
+              path="/adress"
+              element={<ProtectedRoute element={<AdressPage />} />}
+            />
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}
+            />
+            <Route
+              path="/checkout"
+              element={<ProtectedRoute element={<CheckoutPage />} />}
             />
           </Routes>
         </Router>

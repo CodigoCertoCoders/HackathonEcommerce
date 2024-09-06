@@ -24,7 +24,7 @@ const SignUpPage = () => {
 
   const validatePassword = (password) => {
     if (!password) return 'A senha é obrigatória.';
-    if (password.length < 6) return 'A senha deve ter pelo menos 6 caracteres.';
+    if (password.length < 8) return 'A senha deve ter pelo menos 8 caracteres.';
     return '';
   };
 
@@ -59,8 +59,9 @@ const SignUpPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      console.log(email, password);
-      // Here add the logic for sent the data for server
+      console.log(`Mandar dados para o backend
+        email: ${email},
+        senha: ${password}`);
     }
   };
 

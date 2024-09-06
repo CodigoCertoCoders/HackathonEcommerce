@@ -1,0 +1,45 @@
+
+.container{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    
+
+}
+
+.img{
+    width: 20vw;
+    margin: 10px;
+}
+
+.containerP{
+    margin-bottom: 10px;
+    width: 33vw;
+}
+
+.containerButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 33vw;
+}
+
+.buttonIncrement{
+    padding: 5px;
+    background-color: #294122;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    align-items: center;
+}
+
+.buttonDecrement{
+    padding: 5px;
+    color: black;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-size: 15px;
+    align-items: center;
+}

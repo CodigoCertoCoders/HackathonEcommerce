@@ -1,12 +1,14 @@
-import './App.css'
+import Banner from './components/Banner'
+import Header from './components/Header'
+import Section from './components/Section'
 
 function App() {
 
   return (
     <>
-      <div>
-        <h1>Felicitá</h1>
-      </div>
+      <Banner />
+      <Header />
+      <Section />
     </>
   )
 }

@@ -5,9 +5,11 @@ import fonts from '../fonts/fonts.module.css';
 import BackArrow from '../assets/back_arrow.svg';
 import styles from './css/SignUpAndSignIn.module.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
 
 const SignInPage = () => {
   const navigate = useNavigate();
+  const { login } = React.useContext(AuthContext);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -63,9 +65,25 @@ const SignInPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      console.log(`Mandar dados para o backend
-        email: ${email},
-        password: ${password}`);
+      const url =
+        'https://maltex-back-production.up.railway.app/login/verifyCredentials';
+      const data = {
+        email: email,
+        password: password,
+      };
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.client);
+          login(data.client);
+        });
     }
   };
 
@@ -118,6 +136,7 @@ const SignInPage = () => {
         </p>
 
         <GreenButton
+          onClick={handleSubmit}
           classButton={styles.button}
           text={'Entrar'}
           type="submit"

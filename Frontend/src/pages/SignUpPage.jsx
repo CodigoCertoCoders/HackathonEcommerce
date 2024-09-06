@@ -59,9 +59,29 @@ const SignUpPage = () => {
     setErrors({ email: emailError, password: passwordError });
 
     if (!emailError && !passwordError) {
-      console.log(`Mandar dados para o backend
-        email: ${email},
-        senha: ${password}`);
+      const url = 'https://maltex-back-production.up.railway.app/clients';
+      const data = {
+        email: email,
+        uf: '',
+        city: '',
+        neighborhood: '',
+        road: '',
+        number_house: '',
+        complement: '',
+        password: password,
+      };
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        });
     }
   };
 
@@ -98,7 +118,7 @@ const SignUpPage = () => {
           }`}
           labelClass={styles.label}
           labelText={'Senha:'}
-          inputType={'password'}
+          inputType={'current-password'}
           htmlFor={'createAccountPasswordInput'}
         />
         {errors.password && (

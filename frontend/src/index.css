@@ -1,0 +1,33 @@
+:root {
+  font-family: "Lato", sans-serif;
+  --color-purple: #8D40D7;
+  --color--green: #36D681;
+  --color--white: #fff;
+  --color-text-gray: #f2f2f2;
+  --color-text-white: #FBFCF9;
+  --color-border: rgba(83,90,96,0.15);
+  --color-overlay: rgba(0,0,0,0.3);
+  --color-text-gray-dark: #535A60;
+  --color-text-red: #E53939;
+  --color-text-yellow: #FBBC05;
+  --color-gradient: linear-gradient(to right, #8d40d7, #36D681);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color--white);
+}
+
+.container {
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

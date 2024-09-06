@@ -1,5 +1,6 @@
 package com.guardians_of_the_code.use_cases;
 
+import com.guardians_of_the_code.dtos.ClientResponseDTO;
 import com.guardians_of_the_code.dtos.LoginRequestDTO;
 import com.guardians_of_the_code.dtos.LoginResponseDTO;
 import com.guardians_of_the_code.exceptions.HandleBadRequestException;
@@ -42,13 +43,16 @@ public class LoginUseCase {
 
         String token = service.createToken();
         if(token == null) {
-            return new LoginResponseDTO("Token nulo", 500, null);
+            throw new RuntimeException("Não foi possivel criar token");
         }
 
         boolean updateToken = clientService.updateTokenClient(request.getEmail(), token);
         if(!updateToken){
             throw new RuntimeException("Falha ao tentar atualizar token");
         }
-        return new LoginResponseDTO("Login realizado com sucesso", 200, token);
+
+        ClientResponseDTO clientResponseDTO = service.findClientByEmail(request.getEmail());
+
+        return new LoginResponseDTO("Login realizado com sucesso", 200, token,clientResponseDTO);
     }
 }

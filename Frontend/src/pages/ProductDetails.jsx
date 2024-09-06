@@ -5,11 +5,10 @@ import style from './css/ProductDetails.module.css'
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { products , addToCart } = useContext(ProductContext);
+  const { products , addToCart , cartProd } = useContext(ProductContext);
   const item = products.find((prod) => prod.id === id);
   const [ qtd , setQtd] = useState(0)
 
-  // console.log(item);
 
   if (!item) {
     return <h2>Produto não encontrado</h2>;
@@ -23,8 +22,8 @@ const ProductDetails = () => {
     
     setQtd(qtd - 1)
 
-    if(qtd > 0){
-      setQtd(qtd - 1)
+    if(qtd < 0){
+      setQtd(0)
     }
   }
   return (
@@ -57,7 +56,11 @@ const ProductDetails = () => {
               Adicionar ao carrinho
             </button>
             <button className={style.buttonComprar}>Comprar</button>
+
+
         </section>
+
+     
     </div>
   );
 };

@@ -1,0 +1,94 @@
+.container{
+    background-color: #d9d9d9;
+    height: 100vh;
+
+}
+
+.sectionCart{
+    height: 60%;
+    overflow-y: auto;
+    margin-bottom:30px;
+}
+.control{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: self-end;
+    height: 30%;
+    transition: opacity 0.9s ease, max-height 0.7s ease; /* Ajuste o tempo conforme necessário */   
+    
+}
+.noControl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    display: none;
+    
+    
+}
+.sectionCardTotalVisivel{
+    height: 30%;
+    background-color:#d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 20px;   
+    
+}
+
+.sectionCardTotalInvisivel{
+    height: 30%;
+    background-color:#d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 20px; 
+    transition: 0.6s;
+   display: none;
+   
+    
+}
+
+.sectionValue{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    font-size: 16px;
+    
+}
+
+
+.sectionTotal{
+    border-top: 2px dotted black;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+.divButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button{
+    width: 90vw;
+    padding: 10px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 16px;
+}
+.button>img{
+    padding: 10px;
+    background-color: #4A4A4A;
+    border-radius: 10px;
+}

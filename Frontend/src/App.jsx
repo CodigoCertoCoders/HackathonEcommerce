@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthProvider';
 import PublicRoute from './components/PublicRoute';
 import AdressPage from './pages/AdressPage';
 import CheckoutPage from './pages/CheckoutPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (

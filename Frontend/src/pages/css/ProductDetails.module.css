@@ -77,12 +77,13 @@
 }
 
 .buttonComprar{
-    background-color:  #294122;
+    background-color:  #d9d9d9;
     width: 60vw;
     height: 5vh;
     padding: 10px;
     border: none;
     margin-bottom: 40px;
-    color: white;
+    color: black;
     border-radius: 10px;
+    border: 1px solid black;
 }

@@ -33,7 +33,7 @@ function App() {
             />
             <Route
               path="/catalog"
-              element={<PublicRoute element={<ProductPage />} />}
+              element={<ProtectedRoute element={<ProductPage />} />}
             />
             <Route
               path="/adress"

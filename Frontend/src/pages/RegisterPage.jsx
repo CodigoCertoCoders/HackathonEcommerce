@@ -29,7 +29,7 @@ const RegisterPage = () => {
   const handleGoogleSuccess = (response) => {
     console.log(response);
     console.log('Login com google realizado');
-    
+    // Send data to backend >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   };
 
   const handleGoogleFailure = (error) => {
@@ -45,7 +45,7 @@ const RegisterPage = () => {
   };
 
   const handleFacebookFailure = (error) => {
-    //console.log(`Tivemos algum problema no login com Facebook ${error}`);
+    console.log(`Tivemos algum problema no login com Facebook ${error}`);
   };
 
   const handleClickAlredyHaveAccount = () => {
@@ -55,6 +55,18 @@ const RegisterPage = () => {
   const handleClickCreateNewAccount = () => {
     navigate('/signup');
   };
+
+  // const getUserProfile = async (accessToken) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://graph.facebook.com/me?fields=email,name&access_token=${accessToken}`,
+  //     );
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error('Error fetching data from Facebook API:', error);
+  //   }
+  // };
 
   return (
     <section className={styles.container} style={{ height: viewportHeight }}>

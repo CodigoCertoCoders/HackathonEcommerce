@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthProvider';
 import PublicRoute from './components/PublicRoute';
 import AdressPage from './pages/AdressPage';
 import CheckoutPage from './pages/CheckoutPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
             />
             <Route path="/catalog" element={<ProductPage />} />
             <Route path="/adress" element={<AdressPage />} />
+             <Route
+              path="/cart"
+              element={<CartPage/>}
+            />
             <Route
               path="/catalog/:id"
               element={<ProtectedRoute element={<ProductDetails />} />}

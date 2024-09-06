@@ -56,6 +56,7 @@ public class ProductController {
             }
     )
     public ResponseEntity<ProductResponseDTO> getProductByUuid(@PathVariable UUID uuid){
+        System.out.println(uuid);
         ProductResponseDTO product = getProductByUuidUseCase.execute(uuid);
 
         return ResponseEntity.ok(product);

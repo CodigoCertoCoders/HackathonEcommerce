@@ -81,8 +81,7 @@ const SignInPage = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.client);
-          login(data.client);
+          login(data.client, data.token);
         });
     }
   };

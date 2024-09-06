@@ -27,9 +27,8 @@ const RegisterPage = () => {
   };
 
   const handleGoogleSuccess = (response) => {
+    login(response.id_token, response.user);
     console.log(response);
-    console.log('Login com google realizado');
-    // Send data to backend >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   };
 
   const handleGoogleFailure = (error) => {
@@ -79,7 +78,7 @@ const RegisterPage = () => {
           <LoginSocialGoogle
             client_id={googleClientId}
             onResolve={handleGoogleSuccess}
-            onReject={handleGoogleSuccess}
+            onReject={handleGoogleFailure}
             className={styles.socialButton}
           >
             <Logo logo={GoogleIcon} width={'40px'} height={'40px'} />

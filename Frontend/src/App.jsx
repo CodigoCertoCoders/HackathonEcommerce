@@ -15,9 +15,9 @@ import CartPage from './pages/CartPage';
 
 function App() {
   return (
-    <AuthProvider>
-      <ProductProvider>
-        <Router>
+    <Router>
+      <AuthProvider>
+        <ProductProvider>
           <Routes>
             <Route
               path="/"
@@ -48,9 +48,9 @@ function App() {
               element={<ProtectedRoute element={<CheckoutPage />} />}
             />
           </Routes>
-        </Router>
-      </ProductProvider>
-    </AuthProvider>
+        </ProductProvider>
+      </AuthProvider>
+    </Router>
   );
 }
 

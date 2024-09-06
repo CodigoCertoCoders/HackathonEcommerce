@@ -26,13 +26,10 @@ public class Client extends RepresentationModel<Client> {
     private String email;
     @Column(columnDefinition = "CHAR(11)",unique = true,nullable = false)
     private String phone;
-    @Column(nullable = false,columnDefinition = "CHAR(2)")
+    @Column(columnDefinition = "CHAR(2)")
     private String uf;
-    @Column(nullable = false)
     private String city;
-    @Column(nullable = false)
     private String neighborhood;
-    @Column(nullable = false)
     private String road;
     private String number_house;
     private String complement;

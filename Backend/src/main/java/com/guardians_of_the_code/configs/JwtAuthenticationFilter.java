@@ -23,8 +23,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        System.out.println(requestURI);
 
-        if ("/login/verifyCredentials".equals(requestURI) || ("/clients".equals(requestURI) && request.getMethod().equals("POST"))) {
+        if (
+                ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                "/login/verifyCredentials".equals(requestURI) ||
+                "/products".equals(requestURI) ||
+                requestURI.matches("/products/[^/]+") ||
+                        "/static/**".equals(requestURI) ||
+                        requestURI.startsWith("/swagger-ui/") ||
+                        "/swagger-ui/index.html".equals(requestURI) ||
+                        requestURI.startsWith("/v3/api-docs")
+        ) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -67,12 +78,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private String findToken(HttpServletRequest request) {
         var authorization = request.getHeader("Authorization");
 
-        if (authorization == null || !authorization.startsWith("Authorization Bearer ")) {
+
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
             return null;
         }
 
-        String token = authorization.substring(21).trim();
-
-        return token;
+        return authorization.substring(7).trim();
     }
 }

@@ -1,3 +1,22 @@
+.header{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerLink{
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+.headerCart{
+    display: flex;
+    text-decoration: none;
+    color: black;
+}
+
+
 .photo{
     background-color: red;
     width: 80vw;

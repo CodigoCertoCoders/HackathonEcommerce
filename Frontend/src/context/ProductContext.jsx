@@ -98,11 +98,25 @@ export const ProductProvider = ({children})=>{
         setCartProd([])
         localStorage.removeItem('cartProd')
       }
+
+      const updateQtd = (prodId, qtd) =>{
+       
+        setCartProd((prevCart)=>{
+          const update = prevCart.map((item)=>(
+            item.id === prodId ? {...item , 'qtd' : qtd} : item
+            
+          )) .filter((item) => item.qtd > 0);
+
+          localStorage.setItem('cartProd' , JSON.stringify(update))
+          console.log("Atualizou o valor", update)
+          return update
+        })
+      }
       
       
 
     return(
-        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter , activateFilter , setActivateFilter, addToCart, activateMaisPedidos , setActivateMaisPedidos , cartProd}}>
+        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter , activateFilter , setActivateFilter, addToCart, activateMaisPedidos , setActivateMaisPedidos , cartProd , updateQtd}}>
             {children}
         </ProductContext.Provider>
     )

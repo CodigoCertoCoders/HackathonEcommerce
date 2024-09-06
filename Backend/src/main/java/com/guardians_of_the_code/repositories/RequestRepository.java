@@ -91,7 +91,6 @@ public class RequestRepository implements RequestInterface {
         // Salva a entidade Request no banco de dados
         jpaInterfaceRequest.save(requestModel);
 
-
         return requestModel;
     }
 
@@ -110,6 +109,10 @@ public class RequestRepository implements RequestInterface {
 
         if(request.getClient_id() != null){
             ClientResponseDTO clientDTO = service.findByClient(request.getClient_id().getId());
+            if(clientDTO == null){
+                throw new HandleNotFoundException("Cliente");
+            }
+
             Client client = modelMapper.map(clientDTO,Client.class);
 
             existingRequest.setClient(client);
@@ -124,9 +127,15 @@ public class RequestRepository implements RequestInterface {
         }
 
         if(!request.getProducts().isEmpty()){
-            //List<String> productsList = new ArrayList<>(request.getProducts());
+            String productsJson;
 
-            //existingRequest.setProducts(productsList);
+            try{
+                productsJson = objectMapper.writeValueAsString(request.getProducts());
+            }catch (JsonProcessingException e){
+                throw new RuntimeException("Não foi possivel transformar a lista em json");
+            }
+
+            existingRequest.setProducts(productsJson);
         }
 
         jpaInterfaceRequest.save(existingRequest);

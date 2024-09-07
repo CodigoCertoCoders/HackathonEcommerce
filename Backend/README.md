@@ -29,6 +29,3 @@ SUBSTRING(HEX(id), 21, 12)
 -------------------------------------------------
 ### Link API em produção 📍
 #### https://maltex-back-production.up.railway.app
-
-
-------------------------------------------------

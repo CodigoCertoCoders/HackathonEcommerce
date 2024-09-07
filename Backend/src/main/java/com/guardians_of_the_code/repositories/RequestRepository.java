@@ -52,8 +52,6 @@ public class RequestRepository implements RequestInterface {
             String[] products = objectMapper.readValue(productsId, String[].class);
             for (String product : products) {
                 productList.add(product);
-                System.out.println(product);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,8 +77,6 @@ public class RequestRepository implements RequestInterface {
         }
         Client client=modelMapper.map(clientResponseDTO,Client.class);
         requestModel.setClient(client);
-
-        System.out.println("prodcts  request"+request.getProducts());
 
         String productsJson;
         try {

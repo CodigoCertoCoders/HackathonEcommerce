@@ -4,24 +4,29 @@ import CartComponents from '../components/CartComponents';
 import style from './css/CartPage.module.css'
 import bag from '../assets/shopping_bag.svg'
 import line from '../assets/horizontal_rule.svg'
+import arrow  from '../assets/arrow_back.svg'
+import { Link } from 'react-router-dom';
+
 
 const CartPage = () =>{
-    const { cartProd } = useContext(ProductContext);
+    const { cartProd, updateQtd } = useContext(ProductContext);
     const [ total , setValorTotal] = useState(0)
     const [opacity , setOpacity] = useState(1)
     const [isActivate , setActivate] = useState(false)
     
-    console.log(cartProd)
     const frete = parseFloat(4.50)
-
+    console.log(cartProd)
     useEffect(() => {
        
-        const totalPrice = cartProd.map(item => item.qtd * item.preco);
+        const totalPrice = cartProd.map(item => item.qtd * item.price
+        );
         const sum = totalPrice.reduce((total, value) => total + value, 0);
         setValorTotal(parseFloat(sum.toFixed(2)))
         
         
     }, [cartProd]); // Recalcula o total quando cartProd mudar
+
+
     const handleActivate = () =>{
         if(isActivate === true){
             setActivate(false)
@@ -32,19 +37,24 @@ const CartPage = () =>{
       
     }
 
-    console.log(isActivate)
     return(
         <div className={style.container}>
-            <div>uma seta</div>
+
+            <div >
+                <Link to={"/catalog"} className={style.headerCart}  >
+                    <img src={arrow}/> <p>Back</p>
+                </Link>
+            </div>
             <h2>Meu carrinho</h2>
             <section className={style.sectionCart}>
                 {cartProd.length > 0 ? (<div>
                     {cartProd.map((itens)=>(
                         <CartComponents 
-                        nome={itens.nome}
+                        nome={itens.name}
                         qtd={itens.qtd}
-                        foto={itens.foto}
-                        preco={itens.preco}/>
+                        foto={itens.url}
+                        preco={itens.price}
+                        id={itens.uuid}/>
                     ))}
                 </div>): <p>O carrinho esta vazio</p>}
               

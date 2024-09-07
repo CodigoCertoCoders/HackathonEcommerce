@@ -12,7 +12,7 @@ const FilterComponents = () =>{
     const css  = filter
     
     useEffect(()=>{
-        const uniqueCategory = [...new Set(productData.map(prod => prod.category))]
+        const uniqueCategory = [...new Set(products.map(prod => prod.category))]
 
         setCategories(uniqueCategory)
     }, [products])

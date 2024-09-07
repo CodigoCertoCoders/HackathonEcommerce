@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import productData from '../static/produtos.json'
 
 export const ProductContext = createContext()
 
 export const ProductProvider = ({children})=>{
     const [products , setProducts] = useState([])
+    const [productsData , setProductsData] = useState([])
     const [productsFilter , setProductsFilter] = useState([])
     const [activateFilter , setActivateFilter] = useState(false)
     const [activateMaisPedidos , setActivateMaisPedidos] = useState(true)
+    const [category , setCategories] = useState([])
+
     const [cartProd , setCartProd] = useState(() =>{
       try {
         // Tenta pegar o carrinho do localStorage
@@ -21,37 +23,46 @@ export const ProductProvider = ({children})=>{
       }
     })
 
-    useEffect(() => {
-        setProducts(productData); // Carrega os produtos do arquivo JSON
-    }, [productData]);  
-
+    console.log(products)
     useEffect(() => {
       //Aqui atualizo o carrinho sempre que o estado for atualizado
       localStorage.setItem('cartProd' , JSON.stringify(cartProd));
   }, [cartProd]);  
 
 
-    //CHAMADA DA API PARA OS PRODUTOS
-  //   useEffect(() => {
-  //     const url = "https://maltex-back-production.up.railway.app/products"
 
-  //     fetch(url)
-  //     .then(response =>{
-  //       if(!response){
-  //         throw new Error("Produto nao encontrado")
-  //       }
-  //       setProducts(response.json())
-  //       return response.json()
-  //     })
-  // }, [products]);  
+    //CHAMADA DA API PARA OS PRODUTOS
+    useEffect(() => {
+      const url = "https://maltex-back-production.up.railway.app/products";
+      
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => response.json())
+      .then(data => {setProducts(data.products) , setProductsData(data.products)})
+      .catch(error => console.error('Erro:', error));
+      
+
+    }, []); 
+    
+    useEffect(()=>{
+      const uniqueCategory = [...new Set(productsData.map(prod => prod.category))]
+  
+      setCategories(uniqueCategory)
+  }, [products])
+  
+    
 
     const handleFilter=(filter) =>{
 
         if(filter === ''){
-            setProducts(productData)
-            console.log(productData)
+            setProducts(productsData)
         }else{
             const filtered = products.filter(prod=>prod.category === filter)
+            console.log(filtered)
             setProducts(filtered)
         }
 
@@ -67,13 +78,13 @@ export const ProductProvider = ({children})=>{
           }
       
           // Verifica se o produto já está no carrinho
-          const existItem = prevcartProd.find((item) => item.id === prod.id);
+          const existItem = prevcartProd.find((item) => item.uuid === prod.id);
 
       
           if (existItem) {
             // Se o produto já está no carrinho, atualiza a quantidade
             const novoCart = prevcartProd.map((item) =>
-              item.id === prod.id
+              item.uuid === prod.id
                 ? { ...item, qtd: item.qtd + qtd }
                 : item
             );
@@ -98,11 +109,25 @@ export const ProductProvider = ({children})=>{
         setCartProd([])
         localStorage.removeItem('cartProd')
       }
+
+      const updateQtd = (prodId, qtd) =>{
+       
+        setCartProd((prevCart)=>{
+          const update = prevCart.map((item)=>(
+            item.uuid === prodId ? {...item , 'qtd' : qtd} : item
+            
+          )) .filter((item) => item.qtd > 0);
+
+          localStorage.setItem('cartProd' , JSON.stringify(update))
+          console.log("Atualizou o valor", update)
+          return update
+        })
+      }
       
       
 
     return(
-        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter , activateFilter , setActivateFilter, addToCart, activateMaisPedidos , setActivateMaisPedidos , cartProd}}>
+        <ProductContext.Provider value={{products,setProducts , productsFilter , setProductsFilter , handleFilter , activateFilter , setActivateFilter, addToCart, activateMaisPedidos , category, setActivateMaisPedidos , cartProd , updateQtd}}>
             {children}
         </ProductContext.Provider>
     )

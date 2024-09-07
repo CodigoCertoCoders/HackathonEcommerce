@@ -13,10 +13,21 @@
 .legendaProd{
     width: 100%;
     margin: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
 }
 
 .link{
     text-decoration: none;
     color: black;
+}
+
+@media screen and (min-width:500px) {
+    
+    .imgProd{
+        width: 90%;
+    }
 }

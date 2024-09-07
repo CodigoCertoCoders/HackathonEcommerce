@@ -4,6 +4,14 @@
 
 }
 
+.headerCart{
+    display: flex;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: black;
+    
+}
+
 .sectionCart{
     height: 60%;
     overflow-y: auto;

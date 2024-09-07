@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import style from './css/ProductDetails.module.css';
 import arrow from '../assets/arrow_back.svg';
-import cart from '../assets/shopping_Cart.svg';
+import cart from '../assets/shopping_cart.svg';
 import { toast } from 'react-toastify';
 
 const ProductDetails = () => {

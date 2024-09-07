@@ -16,8 +16,8 @@ public class HandleGlobalExceptions {
 
     @ExceptionHandler(HandleBadRequestException.class)
     public ResponseEntity<ErrorDTO> handleBadRequest(HandleBadRequestException ex){
-        ErrorDTO errorResponse = new ErrorDTO("Erro na requisição",ex.getMessage(),422);
-        return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
+        ErrorDTO errorResponse = new ErrorDTO("Erro na requisição",ex.getMessage(),400);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HandleConflictException.class)

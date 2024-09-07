@@ -16,16 +16,8 @@ public class UpdateClientUseCase {
     private ClientService service;
 
     public MessageStatusDTO execute(UUID uuid, ClientRequestDTO request){
-        if(request.getName().isEmpty() || request.getName().isBlank()){
-            throw new HandleBadRequestException("Nome não pode ser vazio ou nulo");
-        }
-
         if(request.getEmail().isEmpty() || request.getEmail().isBlank()){
             throw new HandleBadRequestException("Email não pode ser vazio ou nulo");
-        }
-
-        if(request.getPhone().isEmpty() || request.getPhone().isBlank()){
-            throw new HandleBadRequestException("Telefone não pode ser vazio ou nulo");
         }
 
         if(request.getPassword() == null || request.getPassword().isEmpty()){
@@ -38,25 +30,12 @@ public class UpdateClientUseCase {
             }
         }
 
-        if(request.getName().length() > 30){
-            throw new HandleBadRequestException("O nome deve ter até 30 caracteres");
-        }
-
         if(request.getEmail().length() > 120 || request.getEmail().length() < 15){
             throw new HandleBadRequestException("O email deve ter no minimo 15 e no máximo 120 caracteres");
         }
 
-        if(request.getPhone().length() != 11){
-            throw new HandleBadRequestException("O telefone deve seguir o formato 99221111111,contendo 11 caracteres");
-        }
-
         if(request.getPassword().length() > 100 || request.getPassword().length() < 8){
             throw new HandleBadRequestException("A senha deve ter no minimo 8 e no máximo 100 caracteres");
-        }
-
-        boolean existsPhone = service.existsClientByPhone(request.getPhone());
-        if(existsPhone){
-            throw new HandleConflictException("Número de celular já existe");
         }
 
         boolean existsByEmailAndId = service.existsClientByEmailAndId(uuid, request.getEmail());

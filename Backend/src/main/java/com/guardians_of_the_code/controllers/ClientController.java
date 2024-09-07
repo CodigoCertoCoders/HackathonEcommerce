@@ -40,7 +40,8 @@ public class ClientController {
             description = "Buscar um cliente pelo uuid",
             responses = {
                     @ApiResponse(responseCode = "200",description = "Cliente encontrado"),
-                    @ApiResponse(responseCode = "404",description = "Cliente não encontrado")
+                    @ApiResponse(responseCode = "404",description = "Cliente não encontrado"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado")
             }
     )
     @SecurityRequirement(name = "bearerAuth")
@@ -76,6 +77,7 @@ public class ClientController {
             responses = {
                     @ApiResponse(responseCode = "200",description = "Cliente atualizado com sucesso"),
                     @ApiResponse(responseCode = "400",description = "Erros na requisição"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Cliente não encontrado"),
                     @ApiResponse(responseCode = "409",description = "Conflito no banco de dados")
             }
@@ -92,6 +94,7 @@ public class ClientController {
             description = "Deletar cliente",
             responses = {
                     @ApiResponse(responseCode = "204",description = "Cliente deletado com sucesso"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Cliente não encontrado")
             }
     )

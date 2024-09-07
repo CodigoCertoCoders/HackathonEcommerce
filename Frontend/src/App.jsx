@@ -24,11 +24,11 @@ function App() {
             <Route path="/" element={<PublicRoute element={<RegisterPage />} />} />
             <Route path="/signup" element={<PublicRoute element={<SignUpPage />} />} />
             <Route path="/signin" element={<PublicRoute element={<SignInPage />} />} />
-            <Route path="/catalog" element={<PublicRoute element={<ProductPage />} />} />
+            <Route path="/catalog" element={<ProtectedRoute element={<ProductPage />} />} />
             <Route path="/adress" element={<ProtectedRoute element={<AdressPage />} />} />
-            <Route path="/catalog/:id" element={<PublicRoute element={<ProductDetails />} />} />
+            <Route path="/catalog/:id" element={<ProtectedRoute element={<ProductDetails />} />} />
             <Route path="/checkout" element={<ProtectedRoute element={<CheckoutPage />} />} />
-            <Route path="/cart" element={<PublicRoute element={<CartPage />} />} />
+            <Route path="/cart" element={<ProtectedRoute element={<CartPage />} />} />
           </Routes>
           {/* Adicionando o ToastContainer para que os toasts sejam exibidos */}
           <ToastContainer

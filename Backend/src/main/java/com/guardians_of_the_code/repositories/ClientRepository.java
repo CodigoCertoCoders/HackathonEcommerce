@@ -6,7 +6,7 @@ import com.guardians_of_the_code.dtos.MessageStatusDTO;
 import com.guardians_of_the_code.entities.Client;
 import com.guardians_of_the_code.exceptions.HandleNotFoundException;
 import com.guardians_of_the_code.interfaces.ClientInterface;
-import com.guardians_of_the_code.interfaces.JPAInterfaceClient;
+import com.guardians_of_the_code.interfaces.JPAInterface;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ public class ClientRepository implements ClientInterface {
     private ModelMapper modelMapper;
 
     @Autowired
-    private JPAInterfaceClient jpaRepository;
+    private JPAInterface jpaRepository;
 
     @Autowired
     private PasswordEncoder encoder;

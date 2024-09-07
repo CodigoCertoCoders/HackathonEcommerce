@@ -1,6 +1,6 @@
 package com.guardians_of_the_code.exceptions;
 
-import com.guardians_of_the_code.dtos.ErrorDTO;
+import com.guardians_of_the_code.dtos.ClientErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

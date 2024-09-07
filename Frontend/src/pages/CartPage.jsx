@@ -15,10 +15,11 @@ const CartPage = () =>{
     const [isActivate , setActivate] = useState(false)
     
     const frete = parseFloat(4.50)
-
+    console.log(cartProd)
     useEffect(() => {
        
-        const totalPrice = cartProd.map(item => item.qtd * item.preco);
+        const totalPrice = cartProd.map(item => item.qtd * item.price
+        );
         const sum = totalPrice.reduce((total, value) => total + value, 0);
         setValorTotal(parseFloat(sum.toFixed(2)))
         
@@ -49,11 +50,11 @@ const CartPage = () =>{
                 {cartProd.length > 0 ? (<div>
                     {cartProd.map((itens)=>(
                         <CartComponents 
-                        nome={itens.nome}
+                        nome={itens.name}
                         qtd={itens.qtd}
-                        foto={itens.foto}
-                        preco={itens.preco}
-                        id={itens.id}/>
+                        foto={itens.url}
+                        preco={itens.price}
+                        id={itens.uuid}/>
                     ))}
                 </div>): <p>O carrinho esta vazio</p>}
               

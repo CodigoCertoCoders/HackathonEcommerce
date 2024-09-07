@@ -27,10 +27,8 @@ public class Request {
     private int quantity;
     @Column(nullable = false)
     private double price;
-
     @Column(columnDefinition = "JSON", nullable = false)
-    private String products;  // Aqui você armazenará o JSON
-
+    private String products;
     @ManyToOne
     @JoinColumn(name = "client",nullable = false)
     private Client client;

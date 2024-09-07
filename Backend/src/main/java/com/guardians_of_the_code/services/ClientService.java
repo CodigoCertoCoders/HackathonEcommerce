@@ -41,9 +41,6 @@ public class ClientService implements ClientInterface {
     public boolean existsClientByEmail(String email) {
         return repository.existsClientByEmail(email);
     }
-    public boolean existsClientByPhone(String phone) {
-        return repository.existsClientByPhone(phone);
-    }
     @Override
     public boolean existsClient(UUID uuid) {
         return repository.existsClient(uuid);

@@ -34,7 +34,7 @@ public class ProductRepository implements ProductInterface {
     private final Path fileStorageLocation;
 
     public ProductRepository() {
-        this.fileStorageLocation = Paths.get("src/main/resources/assets").toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get("src/main/resources/static/assets").toAbsolutePath().normalize();
 
         try{
             Files.createDirectories(this.fileStorageLocation);

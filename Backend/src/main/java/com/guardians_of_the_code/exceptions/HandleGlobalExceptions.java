@@ -9,20 +9,26 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class HandleGlobalExceptions {
     @ExceptionHandler(HandleNotFoundException.class)
-    public ResponseEntity<ClientErrorDTO> handleNotFound(HandleNotFoundException ex){
-        ClientErrorDTO errorResponse = new ClientErrorDTO("Registro não encontrado",ex.getMessage(),404);
+    public ResponseEntity<ErrorDTO> handleNotFound(HandleNotFoundException ex){
+        ErrorDTO errorResponse = new ErrorDTO("Registro não encontrado",ex.getMessage(),404);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(HandleBadRequestException.class)
-    public ResponseEntity<ClientErrorDTO> handleBadRequest(HandleBadRequestException ex){
-        ClientErrorDTO errorResponse = new ClientErrorDTO("Erro na requisição",ex.getMessage(),422);
-        return new ResponseEntity<>(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
+    public ResponseEntity<ErrorDTO> handleBadRequest(HandleBadRequestException ex){
+        ErrorDTO errorResponse = new ErrorDTO("Erro na requisição",ex.getMessage(),400);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(HandleConflictException.class)
-    public  ResponseEntity<ClientErrorDTO> handleConflict(HandleConflictException ex){
-        ClientErrorDTO errorResponse = new ClientErrorDTO("Conflito no banco de dados",ex.getMessage(),409);
+    public ResponseEntity<ErrorDTO> handleConflict(HandleConflictException ex){
+        ErrorDTO errorResponse = new ErrorDTO("Conflito no banco de dados",ex.getMessage(),409);
         return new ResponseEntity<>(errorResponse,HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(HandleProductsNotFoundException.class)
+    public ResponseEntity<ErrorDTO> handleProductotFound(HandleProductsNotFoundException ex){
+        ErrorDTO errorResponse = new ErrorDTO("Registros não encontrados",ex.getMessage(),404);
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
 }

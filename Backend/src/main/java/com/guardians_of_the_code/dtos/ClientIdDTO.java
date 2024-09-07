@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-
 public class ClientIdDTO {
     private UUID id;
 

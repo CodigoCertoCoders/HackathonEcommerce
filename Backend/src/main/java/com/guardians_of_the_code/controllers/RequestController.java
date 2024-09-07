@@ -41,6 +41,7 @@ public class RequestController {
             description = "Criar pedido",
             responses = {
                     @ApiResponse(responseCode = "201",description = "Pedido atualiazado com sucesso"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Pedido não encontrado"),
                     @ApiResponse(responseCode = "400",description = "Erro na requisição")
             }
@@ -59,6 +60,7 @@ public class RequestController {
             description = "Buscar pedido por uuid",
             responses = {
                     @ApiResponse(responseCode = "200",description = "Pedido encontrado"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Pedido não encontrado")
             }
     )
@@ -74,6 +76,7 @@ public class RequestController {
             description = "Atualizar pedido",
             responses = {
                     @ApiResponse(responseCode = "200",description = "Pedido atualizado com sucesso"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Pedido não encontrado"),
                     @ApiResponse(responseCode = "400",description = "Erro na requisição")
             }
@@ -90,6 +93,7 @@ public class RequestController {
             description = "Deletar produto",
             responses = {
                     @ApiResponse(responseCode = "200",description = "Pedido deletado com sucesso"),
+                    @ApiResponse(responseCode = "401",description = "Não autorizado"),
                     @ApiResponse(responseCode = "404",description = "Pedido não encontrado")
             }
     )

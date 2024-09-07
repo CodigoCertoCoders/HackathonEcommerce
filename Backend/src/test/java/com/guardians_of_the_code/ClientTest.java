@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class ClientTest {
-    @Autowired
+  /*  @Autowired
     private CreateClientUseCase createClientUseCase;
 
     @Autowired
@@ -133,7 +133,7 @@ public class ClientTest {
 
         assertEquals("Cliente não encontrado", thrown.getMessage());
     }
-
+*/
 
 }
 

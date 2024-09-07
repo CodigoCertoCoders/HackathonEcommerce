@@ -24,8 +24,6 @@ public class Client extends RepresentationModel<Client> {
     private String name;
     @Column(length = 120,unique = true,nullable = false)
     private String email;
-    @Column(columnDefinition = "CHAR(11)",unique = true,nullable = false)
-    private String phone;
     @Column(columnDefinition = "CHAR(2)")
     private String uf;
     private String city;

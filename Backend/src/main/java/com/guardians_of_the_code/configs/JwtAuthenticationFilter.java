@@ -24,17 +24,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestURI = request.getRequestURI();
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        System.out.println(requestURI);
 
         if (
-                ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
-                "/login/verifyCredentials".equals(requestURI) ||
-                "/products".equals(requestURI) ||
-                requestURI.matches("/products/[^/]+") ||
+                ("/clients".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
+                        ("/clients".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                        ("/clients/".equals(requestURI) && "POST".equals(httpRequest.getMethod())) ||
+                        ("/clients/".equals(requestURI) && "OPTIONS".equals(httpRequest.getMethod())) ||
+                        "/login/verifyCredentials".equals(requestURI) ||
+                        "/products".equals(requestURI) ||
+                        requestURI.startsWith("/products") ||
+                        requestURI.matches("/products/[^/]+") ||
                         "/static/**".equals(requestURI) ||
                         requestURI.startsWith("/swagger-ui/") ||
                         "/swagger-ui/index.html".equals(requestURI) ||
-                        requestURI.startsWith("/v3/api-docs")
+                        requestURI.startsWith("/v3/api-docs") ||
+                        requestURI.startsWith("/assets/")
         ) {
             filterChain.doFilter(request, response);
             return;

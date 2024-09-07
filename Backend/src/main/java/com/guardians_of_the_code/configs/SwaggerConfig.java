@@ -17,7 +17,7 @@ import org.springframework.security.access.annotation.Secured;
         ),
         servers = {
                 @Server(
-                        url = "https://maltex.railway/",
+                        url = "https://maltex-back-production.up.railway.app/",
                         description = "Produção"
                 ),
                 @Server(

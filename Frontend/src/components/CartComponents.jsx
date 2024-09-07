@@ -3,18 +3,13 @@ import style from './css/CartComponents.module.css'
 import { ProductContext } from '../context/ProductContext';
 
 const CartComponents = ({foto , nome, qtd , preco, id}) =>{
-    const { cartProd, updateQtd } = useContext(ProductContext);
+    const {  updateQtd } = useContext(ProductContext);
 
-    useEffect(() => {
-       
-        // updateQtd()
-         
-     }, [cartProd]);
     return(
         <>
             <div className={style.container}>
             <section  >
-                <img className={style.img} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdWLJMG-XuQjyntqvv-9zkuVubhgndVXdCMw&s"/>
+                <img className={style.img} src={foto}/>
             </section>
 
             <section className={style.containerP}>

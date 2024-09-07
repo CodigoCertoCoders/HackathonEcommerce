@@ -11,20 +11,22 @@ import productData from '../static/produtos.json'
 import { Link } from "react-router-dom";
 
 const ProductPage = () => {
-  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setActivateMaisPedidos , cartProd} = useContext(ProductContext);
+  const { products,setProducts, activateFilter , setActivateFilter, activateMaisPedidos , setActivateMaisPedidos , cartProd , category , handleFilter} = useContext(ProductContext);
   const [search , setSearch] = useState('')
   const itemCount = cartProd.length;
-  console.log(itemCount)
+  // console.log(itemCount)
   const handleSearch = (event) =>{
     setSearch(event.target.value)
   }
+
   
   const handleSubmit = (event) => {
-    if(search == ''){
-      setProducts(productData)
+    if(search === ''){
+      setProducts(products)
+      console.log(search)
     }else{
       const filtered = products.filter(product =>
-        product.nome.toLowerCase().includes(search.toLowerCase()) ||
+        product.name.toLowerCase().includes(search.toLowerCase()) ||
         product.category.toLowerCase().includes(search.toLowerCase())
       );
       setProducts(filtered)
@@ -39,6 +41,7 @@ const ProductPage = () => {
   };
 
 
+
   return (
     <div>
       <section className={styles.container}>
@@ -47,7 +50,7 @@ const ProductPage = () => {
           <h3>UserName</h3>
         </div>
 
-        <div style={{ position: 'relative', width: '250px', marginTop: '10px', marginBottom: '10px' }}>
+        <div className={styles.mediaQuery}  style={{ position: 'relative', width: '250px', marginTop: '10px', marginBottom: '10px' }}>
           <img src={Search}
             style={{
               position: 'absolute',
@@ -58,7 +61,7 @@ const ProductPage = () => {
             }}
             alt="Ícone de busca"
           />
-          <form onSubmit={handleSubmit}>
+          <form  className={styles.input}onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Esta procurando por..."
@@ -71,6 +74,7 @@ const ProductPage = () => {
               }}
               className={styles.input}
             />
+           
           </form>
           
           <i
@@ -83,9 +87,15 @@ const ProductPage = () => {
               cursor: 'pointer',
             }}
             className="fas fa-times"
+            
           ></i>
-
-
+           <select className={styles.select} name="Filtre">
+              <option onClick={() => handleFilter('')}>Filtro</option>
+               {category.map((cat , index)=>(
+                <option onClick={() =>handleFilter(cat)}key={index} value={cat}>{cat}</option>
+               ))}
+    
+            </select>
         </div>
 
 
@@ -152,8 +162,11 @@ const ProductPage = () => {
           <h3>Mais pedidos</h3>
           <section className={styles.sectionMaisPedidos}>
             <div className={styles.catalogProd}>
-              {products.map((prod) => (
-                <img key={prod.nome} src={prod.foto} className={styles.imgProd} alt={prod.nome} />
+              {products.slice(0,5).map((prod) => (
+                <Link to={`/catalog/${prod.uuid}`} className={styles.img}>
+                   <img key={prod.name} src={`https://maltex-back-production.up.railway.app/assets/${prod.url}`} className={styles.imgProd} alt={prod.name} />
+                </Link>
+               
               ))}
             </div>
           </section>
@@ -165,11 +178,11 @@ const ProductPage = () => {
       <section className={styles.allProducts}>
         {products.map((prod) => (
           <ProductCard
-            key={prod.id}
-            name={prod.nome}
-            price={prod.preco}
-            photo={prod.foto}
-            id={prod.id}
+            key={prod.uuid}
+            name={prod.name}
+            price={prod.price}
+            photo={prod.url}
+            id={prod.uuid}
           />
         ))}
 

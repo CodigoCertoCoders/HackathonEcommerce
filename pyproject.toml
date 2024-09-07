@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "Hackaton Grupo 7"
+authors = ["bentoluizv , _"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.3"
+
+
+
+[tool.poetry.group.dev.dependencies]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+############################ BOAS PRÁTICAS DE CÓDICO E FORMATAÇÃO ################### RUFF ###########################################
+[tool.ruff]
+line-length = 79
+
+
+
+[tool.ruff.lint]
+preview = true
+ignore = ['PLR6301']
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+[tool.taskipy.tasks]
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+dev = 'fastapi dev app/app.py'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=app'
+post_test = 'coverage html'
+run = 'fastapi run app/app.py'

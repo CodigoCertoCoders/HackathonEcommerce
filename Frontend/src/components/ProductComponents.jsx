@@ -24,7 +24,7 @@ const ProductCard = ({ name, price, photo, id }) => {
         <div className={styles.legendaProd}>
           <p>{name}</p>
           <p>
-            <strong>R${price}</strong>
+            <strong>R$ {price}</strong>
           </p>
         </div>
       </Link>

@@ -2,22 +2,29 @@
 .allProdCatalog{
     color: black;
     font-size: 1em;
+    width: 140px;
+    margin: 10px auto;
+    text-align: center;
 }   
 
 .imgProd{
     height: 15vh;
-    width: 40vw;
-    margin: 10px;
+    width: auto;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #F5F5F5;
+    border-radius: 15px;
 }
 
 .legendaProd{
-    width: 100%;
-    margin: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
+    text-align: left;
+    position: relative;
+    top: -6px;
+    padding-left: 22px;
+}
+
+.legendaProd p strong{
+    color: #249122;
 }
 
 .link{

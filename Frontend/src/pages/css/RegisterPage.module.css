@@ -55,6 +55,7 @@
     display: flex;
     margin-top: 10px;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 @media (min-width: 768px) {

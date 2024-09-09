@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove('token');
     Cookies.remove('userId');
 
-    navigate('/');
+    navigate('/login');
   };
 
   useEffect(() => {

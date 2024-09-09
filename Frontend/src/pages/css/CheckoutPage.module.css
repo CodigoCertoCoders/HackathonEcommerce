@@ -1,21 +1,18 @@
-/* Centraliza o conteúdo dentro de .centralizeDiv */
 .centralizeDiv {
     max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto; /* Adiciona margem automática para centralizar horizontalmente */
+    margin: 0 auto;
 }
 
-/* Adiciona margem automática para centralizar o card */
 .cardUserAdress,
 .cardPayment {
-    margin: 15px auto; /* Centraliza horizontalmente */
+    margin: 15px auto;
     width: 100%;
-    max-width: 800px; /* Limita a largura máxima */
+    max-width: 800px;
 }
 
-/* Para centralizar o botão na tela */
 .buttonSubmit {
     width: calc(100% - 32px);
     padding: 20px;
@@ -26,7 +23,7 @@
     cursor: pointer;
     position: fixed;
     bottom: 16px;
-    left: 50%; /* Move para o meio da tela */
+    left: 50%;
     transform: translateX(-50%); /* Ajusta a posição para o centro */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -34,7 +31,6 @@
     box-sizing: border-box; 
 }
 
-/* Mantém as propriedades dos outros elementos como estão */
 .header {
     display: flex;
     justify-content: center;
@@ -107,7 +103,6 @@
     width: 80%;
 }
 
-/* Estilos gerais para mobile (mobile-first) */
 .buttonSubmit {
     width: calc(100% - 32px);
     padding: 20px;
@@ -118,8 +113,8 @@
     cursor: pointer;
     position: fixed;
     bottom: 16px;
-    left: 50%; /* Move para o meio da tela */
-    transform: translateX(-50%); /* Ajusta a posição para o centro */
+    left: 50%;
+    transform: translateX(-50%); 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 100%;
@@ -133,4 +128,18 @@
         transform: none;
         margin-left: 5px;
     }
+}
+
+.selected {
+    border: 2px solid #4CAF50;
+  background-color: #e8f5e9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.cardPayment {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cardPayment:hover {
+    transform: scale(1.05);
 }
